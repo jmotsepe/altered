@@ -45,11 +45,11 @@ namespace Altered
 
         private void CreateQuote()
         {
-            //string path = "C:\\Program Files (x86)\\TMTech Solutions\\Altered EMS\\QuoteTemplate.xlsx";
-            string path = "C:\\Users\\Admin\\source\\repos\\Altered\\Altered\\QuoteTemplate.xlsx";
+            string path = "C:\\Program Files (x86)\\TMTech Solutions\\Altered EMS\\QuoteTemplate.xlsx";
+            //string path = "C:\\Users\\Admin\\source\\repos\\Altered\\Altered\\QuoteTemplate.xlsx";
             excelApplication = new Microsoft.Office.Interop.Excel.Application
             {
-                Visible = true
+                Visible = false
             };
 
             excelWorkbook = excelApplication.Workbooks.Open(path);
