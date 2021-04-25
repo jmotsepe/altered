@@ -71,17 +71,9 @@
             this.BtnCancelSupplier = new System.Windows.Forms.Button();
             this.BtnAddSupplier = new System.Windows.Forms.Button();
             this.order = new System.Windows.Forms.TabPage();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.ViewOrderItemsDGV = new System.Windows.Forms.DataGridView();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.TxtInvoiceNumber = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.BtnUpdateOrder = new System.Windows.Forms.Button();
-            this.DtInvoiceDate = new System.Windows.Forms.DateTimePicker();
-            this.label30 = new System.Windows.Forms.Label();
-            this.LblOrderNumber = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
+            this.BtnEditOrder = new System.Windows.Forms.Button();
             this.BtnDeleteOrder = new System.Windows.Forms.Button();
+            this.BtnViewOrder = new System.Windows.Forms.Button();
             this.BtnNewOrder = new System.Windows.Forms.Button();
             this.OrdersDGV = new System.Windows.Forms.DataGridView();
             this.customers = new System.Windows.Forms.TabPage();
@@ -110,38 +102,24 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.quotation = new System.Windows.Forms.TabPage();
-            this.BtnEmailQuote = new System.Windows.Forms.Button();
-            this.BtnConvertQuote = new System.Windows.Forms.Button();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.LblCustomerContact = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.LblCustomerName = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.BnDeleteQuote = new System.Windows.Forms.Button();
-            this.BtnNewQuote = new System.Windows.Forms.Button();
-            this.QuotesDGV = new System.Windows.Forms.DataGridView();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.ViewQuoteItemsDGV = new System.Windows.Forms.DataGridView();
             this.invoices = new System.Windows.Forms.TabPage();
-            this.Invoice_Payments = new System.Windows.Forms.GroupBox();
-            this.LblOutstanding = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.PaymentsDGV = new System.Windows.Forms.DataGridView();
-            this.BtnEmailInvoice = new System.Windows.Forms.Button();
             this.BtnConvertInvoice = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.BtnHideInItems = new System.Windows.Forms.Button();
             this.ViewItemsDGV = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.TxtPaymentAmount = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
+            this.BtnCancelUpdate = new System.Windows.Forms.Button();
             this.BtnUpdateInvoice = new System.Windows.Forms.Button();
             this.DateInvoicePaidDate = new System.Windows.Forms.DateTimePicker();
             this.label24 = new System.Windows.Forms.Label();
             this.LblInvoiceNumber = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
+            this.RadInPaidNo = new System.Windows.Forms.RadioButton();
+            this.RadInPaidYes = new System.Windows.Forms.RadioButton();
+            this.label22 = new System.Windows.Forms.Label();
             this.BtnDeleteInvoice = new System.Windows.Forms.Button();
+            this.BtnViewInvoice = new System.Windows.Forms.Button();
+            this.BtnEditInvoice = new System.Windows.Forms.Button();
             this.BtnNewInvoice = new System.Windows.Forms.Button();
             this.InvoiceDGV = new System.Windows.Forms.DataGridView();
             this.products = new System.Windows.Forms.TabPage();
@@ -174,6 +152,7 @@
             this.BtnRestore = new System.Windows.Forms.Button();
             this.BtnBackup = new System.Windows.Forms.Button();
             this.BtnLogout = new System.Windows.Forms.Button();
+            this.BtnEmailInvoice = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.home.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CRTYearlySales)).BeginInit();
@@ -182,21 +161,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.SupplierDGV)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.order.SuspendLayout();
-            this.groupBox8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ViewOrderItemsDGV)).BeginInit();
-            this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersDGV)).BeginInit();
             this.customers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDGV)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.quotation.SuspendLayout();
-            this.groupBox10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.QuotesDGV)).BeginInit();
-            this.groupBox9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ViewQuoteItemsDGV)).BeginInit();
             this.invoices.SuspendLayout();
-            this.Invoice_Payments.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PaymentsDGV)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ViewItemsDGV)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -219,7 +188,6 @@
             this.tabControl1.Controls.Add(this.supplier);
             this.tabControl1.Controls.Add(this.order);
             this.tabControl1.Controls.Add(this.customers);
-            this.tabControl1.Controls.Add(this.quotation);
             this.tabControl1.Controls.Add(this.invoices);
             this.tabControl1.Controls.Add(this.products);
             this.tabControl1.Controls.Add(this.reports);
@@ -228,7 +196,7 @@
             this.tabControl1.Location = new System.Drawing.Point(13, 13);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1714, 985);
+            this.tabControl1.Size = new System.Drawing.Size(1434, 804);
             this.tabControl1.TabIndex = 0;
             // 
             // home
@@ -239,7 +207,7 @@
             this.home.Location = new System.Drawing.Point(4, 25);
             this.home.Name = "home";
             this.home.Padding = new System.Windows.Forms.Padding(3);
-            this.home.Size = new System.Drawing.Size(1706, 956);
+            this.home.Size = new System.Drawing.Size(1426, 775);
             this.home.TabIndex = 0;
             this.home.Text = "Home";
             // 
@@ -295,7 +263,7 @@
             this.supplier.Location = new System.Drawing.Point(4, 25);
             this.supplier.Name = "supplier";
             this.supplier.Padding = new System.Windows.Forms.Padding(3);
-            this.supplier.Size = new System.Drawing.Size(1706, 956);
+            this.supplier.Size = new System.Drawing.Size(1426, 775);
             this.supplier.TabIndex = 1;
             this.supplier.Text = "Supplier";
             // 
@@ -549,128 +517,31 @@
             // order
             // 
             this.order.BackColor = System.Drawing.Color.DimGray;
-            this.order.Controls.Add(this.groupBox8);
-            this.order.Controls.Add(this.groupBox7);
+            this.order.Controls.Add(this.BtnEditOrder);
             this.order.Controls.Add(this.BtnDeleteOrder);
+            this.order.Controls.Add(this.BtnViewOrder);
             this.order.Controls.Add(this.BtnNewOrder);
             this.order.Controls.Add(this.OrdersDGV);
             this.order.Location = new System.Drawing.Point(4, 25);
             this.order.Name = "order";
             this.order.Padding = new System.Windows.Forms.Padding(3);
-            this.order.Size = new System.Drawing.Size(1706, 956);
+            this.order.Size = new System.Drawing.Size(1426, 775);
             this.order.TabIndex = 2;
             this.order.Text = "Orders";
             // 
-            // groupBox8
+            // BtnEditOrder
             // 
-            this.groupBox8.Controls.Add(this.ViewOrderItemsDGV);
-            this.groupBox8.Location = new System.Drawing.Point(36, 621);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(779, 329);
-            this.groupBox8.TabIndex = 7;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Invoice Items";
-            // 
-            // ViewOrderItemsDGV
-            // 
-            this.ViewOrderItemsDGV.AllowUserToAddRows = false;
-            this.ViewOrderItemsDGV.AllowUserToDeleteRows = false;
-            this.ViewOrderItemsDGV.AllowUserToResizeRows = false;
-            this.ViewOrderItemsDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.ViewOrderItemsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ViewOrderItemsDGV.Location = new System.Drawing.Point(7, 29);
-            this.ViewOrderItemsDGV.Name = "ViewOrderItemsDGV";
-            this.ViewOrderItemsDGV.ReadOnly = true;
-            this.ViewOrderItemsDGV.RowHeadersVisible = false;
-            this.ViewOrderItemsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ViewOrderItemsDGV.Size = new System.Drawing.Size(766, 294);
-            this.ViewOrderItemsDGV.TabIndex = 0;
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.TxtInvoiceNumber);
-            this.groupBox7.Controls.Add(this.label29);
-            this.groupBox7.Controls.Add(this.BtnUpdateOrder);
-            this.groupBox7.Controls.Add(this.DtInvoiceDate);
-            this.groupBox7.Controls.Add(this.label30);
-            this.groupBox7.Controls.Add(this.LblOrderNumber);
-            this.groupBox7.Controls.Add(this.label32);
-            this.groupBox7.Location = new System.Drawing.Point(1408, 30);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(292, 320);
-            this.groupBox7.TabIndex = 5;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Update Order";
-            // 
-            // TxtInvoiceNumber
-            // 
-            this.TxtInvoiceNumber.Location = new System.Drawing.Point(26, 123);
-            this.TxtInvoiceNumber.Name = "TxtInvoiceNumber";
-            this.TxtInvoiceNumber.ReadOnly = true;
-            this.TxtInvoiceNumber.Size = new System.Drawing.Size(243, 23);
-            this.TxtInvoiceNumber.TabIndex = 17;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(23, 98);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(190, 17);
-            this.label29.TabIndex = 16;
-            this.label29.Text = "Supplier Invoice Number:";
-            // 
-            // BtnUpdateOrder
-            // 
-            this.BtnUpdateOrder.Enabled = false;
-            this.BtnUpdateOrder.Location = new System.Drawing.Point(26, 261);
-            this.BtnUpdateOrder.Name = "BtnUpdateOrder";
-            this.BtnUpdateOrder.Size = new System.Drawing.Size(117, 27);
-            this.BtnUpdateOrder.TabIndex = 15;
-            this.BtnUpdateOrder.Text = "Capture Invoice";
-            this.BtnUpdateOrder.UseVisualStyleBackColor = true;
-            this.BtnUpdateOrder.Click += new System.EventHandler(this.BtnUpdateOrder_Click);
-            // 
-            // DtInvoiceDate
-            // 
-            this.DtInvoiceDate.Enabled = false;
-            this.DtInvoiceDate.Location = new System.Drawing.Point(26, 207);
-            this.DtInvoiceDate.Name = "DtInvoiceDate";
-            this.DtInvoiceDate.Size = new System.Drawing.Size(243, 23);
-            this.DtInvoiceDate.TabIndex = 14;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(23, 178);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(99, 16);
-            this.label30.TabIndex = 13;
-            this.label30.Text = "Invoice Date:";
-            // 
-            // LblOrderNumber
-            // 
-            this.LblOrderNumber.AutoSize = true;
-            this.LblOrderNumber.Location = new System.Drawing.Point(23, 59);
-            this.LblOrderNumber.Name = "LblOrderNumber";
-            this.LblOrderNumber.Size = new System.Drawing.Size(39, 17);
-            this.LblOrderNumber.TabIndex = 12;
-            this.LblOrderNumber.Text = "ORD";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(23, 32);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(109, 16);
-            this.label32.TabIndex = 11;
-            this.label32.Text = "Order Number:";
+            this.BtnEditOrder.Location = new System.Drawing.Point(629, 444);
+            this.BtnEditOrder.Name = "BtnEditOrder";
+            this.BtnEditOrder.Size = new System.Drawing.Size(85, 27);
+            this.BtnEditOrder.TabIndex = 2;
+            this.BtnEditOrder.Text = "&Edit";
+            this.BtnEditOrder.UseVisualStyleBackColor = true;
+            this.BtnEditOrder.Click += new System.EventHandler(this.BtnEditOrder_Click);
             // 
             // BtnDeleteOrder
             // 
-            this.BtnDeleteOrder.Location = new System.Drawing.Point(726, 553);
+            this.BtnDeleteOrder.Location = new System.Drawing.Point(728, 444);
             this.BtnDeleteOrder.Name = "BtnDeleteOrder";
             this.BtnDeleteOrder.Size = new System.Drawing.Size(85, 27);
             this.BtnDeleteOrder.TabIndex = 3;
@@ -678,9 +549,19 @@
             this.BtnDeleteOrder.UseVisualStyleBackColor = true;
             this.BtnDeleteOrder.Click += new System.EventHandler(this.BtnDeleteOrder_Click);
             // 
+            // BtnViewOrder
+            // 
+            this.BtnViewOrder.Location = new System.Drawing.Point(827, 444);
+            this.BtnViewOrder.Name = "BtnViewOrder";
+            this.BtnViewOrder.Size = new System.Drawing.Size(85, 27);
+            this.BtnViewOrder.TabIndex = 4;
+            this.BtnViewOrder.Text = "&View";
+            this.BtnViewOrder.UseVisualStyleBackColor = true;
+            this.BtnViewOrder.Click += new System.EventHandler(this.BtnViewOrder_Click);
+            // 
             // BtnNewOrder
             // 
-            this.BtnNewOrder.Location = new System.Drawing.Point(626, 553);
+            this.BtnNewOrder.Location = new System.Drawing.Point(530, 444);
             this.BtnNewOrder.Name = "BtnNewOrder";
             this.BtnNewOrder.Size = new System.Drawing.Size(85, 27);
             this.BtnNewOrder.TabIndex = 1;
@@ -700,9 +581,8 @@
             this.OrdersDGV.ReadOnly = true;
             this.OrdersDGV.RowHeadersVisible = false;
             this.OrdersDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.OrdersDGV.Size = new System.Drawing.Size(1366, 517);
+            this.OrdersDGV.Size = new System.Drawing.Size(1366, 396);
             this.OrdersDGV.TabIndex = 0;
-            this.OrdersDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrdersDGV_CellClick);
             // 
             // customers
             // 
@@ -714,7 +594,7 @@
             this.customers.Location = new System.Drawing.Point(4, 25);
             this.customers.Name = "customers";
             this.customers.Padding = new System.Windows.Forms.Padding(3);
-            this.customers.Size = new System.Drawing.Size(1706, 956);
+            this.customers.Size = new System.Drawing.Size(1426, 775);
             this.customers.TabIndex = 3;
             this.customers.Text = "Customers";
             // 
@@ -964,232 +844,28 @@
             this.label10.TabIndex = 0;
             this.label10.Text = "Company:";
             // 
-            // quotation
-            // 
-            this.quotation.BackColor = System.Drawing.Color.DimGray;
-            this.quotation.Controls.Add(this.BtnEmailQuote);
-            this.quotation.Controls.Add(this.BtnConvertQuote);
-            this.quotation.Controls.Add(this.groupBox10);
-            this.quotation.Controls.Add(this.BnDeleteQuote);
-            this.quotation.Controls.Add(this.BtnNewQuote);
-            this.quotation.Controls.Add(this.QuotesDGV);
-            this.quotation.Controls.Add(this.groupBox9);
-            this.quotation.Location = new System.Drawing.Point(4, 25);
-            this.quotation.Name = "quotation";
-            this.quotation.Padding = new System.Windows.Forms.Padding(3);
-            this.quotation.Size = new System.Drawing.Size(1706, 956);
-            this.quotation.TabIndex = 8;
-            this.quotation.Text = "Quotations";
-            // 
-            // BtnEmailQuote
-            // 
-            this.BtnEmailQuote.Location = new System.Drawing.Point(981, 553);
-            this.BtnEmailQuote.Name = "BtnEmailQuote";
-            this.BtnEmailQuote.Size = new System.Drawing.Size(115, 27);
-            this.BtnEmailQuote.TabIndex = 19;
-            this.BtnEmailQuote.Text = "Email";
-            this.BtnEmailQuote.UseVisualStyleBackColor = true;
-            this.BtnEmailQuote.Click += new System.EventHandler(this.BtnEmailQuote_Click);
-            // 
-            // BtnConvertQuote
-            // 
-            this.BtnConvertQuote.Location = new System.Drawing.Point(860, 553);
-            this.BtnConvertQuote.Name = "BtnConvertQuote";
-            this.BtnConvertQuote.Size = new System.Drawing.Size(115, 27);
-            this.BtnConvertQuote.TabIndex = 18;
-            this.BtnConvertQuote.Text = "Convert to PDF";
-            this.BtnConvertQuote.UseVisualStyleBackColor = true;
-            this.BtnConvertQuote.Click += new System.EventHandler(this.BtnConvertQuote_Click);
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.LblCustomerContact);
-            this.groupBox10.Controls.Add(this.label33);
-            this.groupBox10.Controls.Add(this.LblCustomerName);
-            this.groupBox10.Controls.Add(this.label22);
-            this.groupBox10.Location = new System.Drawing.Point(891, 621);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(781, 303);
-            this.groupBox10.TabIndex = 17;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Quote Details";
-            // 
-            // LblCustomerContact
-            // 
-            this.LblCustomerContact.AutoSize = true;
-            this.LblCustomerContact.Location = new System.Drawing.Point(181, 101);
-            this.LblCustomerContact.Name = "LblCustomerContact";
-            this.LblCustomerContact.Size = new System.Drawing.Size(54, 17);
-            this.LblCustomerContact.TabIndex = 3;
-            this.LblCustomerContact.Text = "label34";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(24, 101);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(124, 17);
-            this.label33.TabIndex = 2;
-            this.label33.Text = "Customer Contact:";
-            // 
-            // LblCustomerName
-            // 
-            this.LblCustomerName.AutoSize = true;
-            this.LblCustomerName.Location = new System.Drawing.Point(181, 54);
-            this.LblCustomerName.Name = "LblCustomerName";
-            this.LblCustomerName.Size = new System.Drawing.Size(54, 17);
-            this.LblCustomerName.TabIndex = 1;
-            this.LblCustomerName.Text = "label31";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(24, 54);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(113, 17);
-            this.label22.TabIndex = 0;
-            this.label22.Text = "Customer Name:";
-            // 
-            // BnDeleteQuote
-            // 
-            this.BnDeleteQuote.Location = new System.Drawing.Point(739, 553);
-            this.BnDeleteQuote.Name = "BnDeleteQuote";
-            this.BnDeleteQuote.Size = new System.Drawing.Size(115, 27);
-            this.BnDeleteQuote.TabIndex = 16;
-            this.BnDeleteQuote.Text = "Delete";
-            this.BnDeleteQuote.UseVisualStyleBackColor = true;
-            this.BnDeleteQuote.Click += new System.EventHandler(this.BnDeleteQuote_Click);
-            // 
-            // BtnNewQuote
-            // 
-            this.BtnNewQuote.Location = new System.Drawing.Point(618, 553);
-            this.BtnNewQuote.Name = "BtnNewQuote";
-            this.BtnNewQuote.Size = new System.Drawing.Size(115, 27);
-            this.BtnNewQuote.TabIndex = 15;
-            this.BtnNewQuote.Text = "New Quote";
-            this.BtnNewQuote.UseVisualStyleBackColor = true;
-            this.BtnNewQuote.Click += new System.EventHandler(this.BtnNewQuote_Click);
-            // 
-            // QuotesDGV
-            // 
-            this.QuotesDGV.AllowUserToAddRows = false;
-            this.QuotesDGV.AllowUserToDeleteRows = false;
-            this.QuotesDGV.AllowUserToResizeRows = false;
-            this.QuotesDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.QuotesDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.QuotesDGV.Location = new System.Drawing.Point(36, 30);
-            this.QuotesDGV.MultiSelect = false;
-            this.QuotesDGV.Name = "QuotesDGV";
-            this.QuotesDGV.ReadOnly = true;
-            this.QuotesDGV.RowHeadersVisible = false;
-            this.QuotesDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.QuotesDGV.Size = new System.Drawing.Size(1636, 517);
-            this.QuotesDGV.TabIndex = 14;
-            this.QuotesDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.QuotesDGV_CellClick);
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.ViewQuoteItemsDGV);
-            this.groupBox9.Location = new System.Drawing.Point(36, 621);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(818, 329);
-            this.groupBox9.TabIndex = 13;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Quote Items";
-            // 
-            // ViewQuoteItemsDGV
-            // 
-            this.ViewQuoteItemsDGV.AllowUserToAddRows = false;
-            this.ViewQuoteItemsDGV.AllowUserToDeleteRows = false;
-            this.ViewQuoteItemsDGV.AllowUserToResizeRows = false;
-            this.ViewQuoteItemsDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.ViewQuoteItemsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ViewQuoteItemsDGV.Location = new System.Drawing.Point(18, 32);
-            this.ViewQuoteItemsDGV.Name = "ViewQuoteItemsDGV";
-            this.ViewQuoteItemsDGV.ReadOnly = true;
-            this.ViewQuoteItemsDGV.RowHeadersVisible = false;
-            this.ViewQuoteItemsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ViewQuoteItemsDGV.Size = new System.Drawing.Size(779, 271);
-            this.ViewQuoteItemsDGV.TabIndex = 0;
-            // 
             // invoices
             // 
             this.invoices.BackColor = System.Drawing.Color.DimGray;
-            this.invoices.Controls.Add(this.Invoice_Payments);
             this.invoices.Controls.Add(this.BtnEmailInvoice);
             this.invoices.Controls.Add(this.BtnConvertInvoice);
             this.invoices.Controls.Add(this.groupBox5);
             this.invoices.Controls.Add(this.groupBox4);
             this.invoices.Controls.Add(this.BtnDeleteInvoice);
+            this.invoices.Controls.Add(this.BtnViewInvoice);
+            this.invoices.Controls.Add(this.BtnEditInvoice);
             this.invoices.Controls.Add(this.BtnNewInvoice);
             this.invoices.Controls.Add(this.InvoiceDGV);
             this.invoices.Location = new System.Drawing.Point(4, 25);
             this.invoices.Name = "invoices";
             this.invoices.Padding = new System.Windows.Forms.Padding(3);
-            this.invoices.Size = new System.Drawing.Size(1706, 956);
+            this.invoices.Size = new System.Drawing.Size(1426, 775);
             this.invoices.TabIndex = 4;
             this.invoices.Text = "Invoices";
             // 
-            // Invoice_Payments
-            // 
-            this.Invoice_Payments.Controls.Add(this.LblOutstanding);
-            this.Invoice_Payments.Controls.Add(this.label26);
-            this.Invoice_Payments.Controls.Add(this.PaymentsDGV);
-            this.Invoice_Payments.Location = new System.Drawing.Point(921, 621);
-            this.Invoice_Payments.Name = "Invoice_Payments";
-            this.Invoice_Payments.Size = new System.Drawing.Size(779, 329);
-            this.Invoice_Payments.TabIndex = 10;
-            this.Invoice_Payments.TabStop = false;
-            this.Invoice_Payments.Text = "Invoice Payments";
-            // 
-            // LblOutstanding
-            // 
-            this.LblOutstanding.AutoSize = true;
-            this.LblOutstanding.Location = new System.Drawing.Point(573, 278);
-            this.LblOutstanding.Name = "LblOutstanding";
-            this.LblOutstanding.Size = new System.Drawing.Size(46, 17);
-            this.LblOutstanding.TabIndex = 2;
-            this.LblOutstanding.Text = "R0.00";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(451, 278);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(101, 17);
-            this.label26.TabIndex = 1;
-            this.label26.Text = "Outstanding:";
-            // 
-            // PaymentsDGV
-            // 
-            this.PaymentsDGV.AllowUserToAddRows = false;
-            this.PaymentsDGV.AllowUserToDeleteRows = false;
-            this.PaymentsDGV.AllowUserToResizeRows = false;
-            this.PaymentsDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.PaymentsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PaymentsDGV.Enabled = false;
-            this.PaymentsDGV.Location = new System.Drawing.Point(7, 29);
-            this.PaymentsDGV.Name = "PaymentsDGV";
-            this.PaymentsDGV.ReadOnly = true;
-            this.PaymentsDGV.RowHeadersVisible = false;
-            this.PaymentsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.PaymentsDGV.Size = new System.Drawing.Size(766, 228);
-            this.PaymentsDGV.TabIndex = 0;
-            // 
-            // BtnEmailInvoice
-            // 
-            this.BtnEmailInvoice.Location = new System.Drawing.Point(845, 571);
-            this.BtnEmailInvoice.Name = "BtnEmailInvoice";
-            this.BtnEmailInvoice.Size = new System.Drawing.Size(115, 27);
-            this.BtnEmailInvoice.TabIndex = 8;
-            this.BtnEmailInvoice.Text = "Email";
-            this.BtnEmailInvoice.UseVisualStyleBackColor = true;
-            this.BtnEmailInvoice.Click += new System.EventHandler(this.BtnEmailInvoice_Click);
-            // 
             // BtnConvertInvoice
             // 
-            this.BtnConvertInvoice.Location = new System.Drawing.Point(724, 571);
+            this.BtnConvertInvoice.Location = new System.Drawing.Point(844, 446);
             this.BtnConvertInvoice.Name = "BtnConvertInvoice";
             this.BtnConvertInvoice.Size = new System.Drawing.Size(115, 27);
             this.BtnConvertInvoice.TabIndex = 7;
@@ -1199,13 +875,25 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.BtnHideInItems);
             this.groupBox5.Controls.Add(this.ViewItemsDGV);
-            this.groupBox5.Location = new System.Drawing.Point(36, 621);
+            this.groupBox5.Location = new System.Drawing.Point(623, 512);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(779, 329);
+            this.groupBox5.Size = new System.Drawing.Size(779, 246);
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Invoice Items";
+            this.groupBox5.Visible = false;
+            // 
+            // BtnHideInItems
+            // 
+            this.BtnHideInItems.Location = new System.Drawing.Point(353, 213);
+            this.BtnHideInItems.Name = "BtnHideInItems";
+            this.BtnHideInItems.Size = new System.Drawing.Size(75, 27);
+            this.BtnHideInItems.TabIndex = 1;
+            this.BtnHideInItems.Text = "Close";
+            this.BtnHideInItems.UseVisualStyleBackColor = true;
+            this.BtnHideInItems.Click += new System.EventHandler(this.BtnHideInItems_Click);
             // 
             // ViewItemsDGV
             // 
@@ -1219,67 +907,53 @@
             this.ViewItemsDGV.ReadOnly = true;
             this.ViewItemsDGV.RowHeadersVisible = false;
             this.ViewItemsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ViewItemsDGV.Size = new System.Drawing.Size(766, 294);
+            this.ViewItemsDGV.Size = new System.Drawing.Size(766, 166);
             this.ViewItemsDGV.TabIndex = 0;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.label28);
-            this.groupBox4.Controls.Add(this.TxtPaymentAmount);
-            this.groupBox4.Controls.Add(this.label27);
+            this.groupBox4.Controls.Add(this.BtnCancelUpdate);
             this.groupBox4.Controls.Add(this.BtnUpdateInvoice);
             this.groupBox4.Controls.Add(this.DateInvoicePaidDate);
             this.groupBox4.Controls.Add(this.label24);
             this.groupBox4.Controls.Add(this.LblInvoiceNumber);
             this.groupBox4.Controls.Add(this.label23);
-            this.groupBox4.Location = new System.Drawing.Point(1408, 30);
+            this.groupBox4.Controls.Add(this.RadInPaidNo);
+            this.groupBox4.Controls.Add(this.RadInPaidYes);
+            this.groupBox4.Controls.Add(this.label22);
+            this.groupBox4.Location = new System.Drawing.Point(36, 512);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(292, 320);
+            this.groupBox4.Size = new System.Drawing.Size(535, 220);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Update Invoice";
+            this.groupBox4.Visible = false;
             // 
-            // label28
+            // BtnCancelUpdate
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(12, 134);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(22, 17);
-            this.label28.TabIndex = 10;
-            this.label28.Text = "R:";
-            // 
-            // TxtPaymentAmount
-            // 
-            this.TxtPaymentAmount.Location = new System.Drawing.Point(44, 128);
-            this.TxtPaymentAmount.Name = "TxtPaymentAmount";
-            this.TxtPaymentAmount.Size = new System.Drawing.Size(214, 23);
-            this.TxtPaymentAmount.TabIndex = 9;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(12, 103);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(129, 17);
-            this.label27.TabIndex = 8;
-            this.label27.Text = "Payment Amount";
+            this.BtnCancelUpdate.Location = new System.Drawing.Point(273, 181);
+            this.BtnCancelUpdate.Name = "BtnCancelUpdate";
+            this.BtnCancelUpdate.Size = new System.Drawing.Size(75, 27);
+            this.BtnCancelUpdate.TabIndex = 8;
+            this.BtnCancelUpdate.Text = "Cancel";
+            this.BtnCancelUpdate.UseVisualStyleBackColor = true;
+            this.BtnCancelUpdate.Click += new System.EventHandler(this.BtnCancelUpdate_Click);
             // 
             // BtnUpdateInvoice
             // 
             this.BtnUpdateInvoice.Enabled = false;
-            this.BtnUpdateInvoice.Location = new System.Drawing.Point(15, 266);
+            this.BtnUpdateInvoice.Location = new System.Drawing.Point(182, 181);
             this.BtnUpdateInvoice.Name = "BtnUpdateInvoice";
-            this.BtnUpdateInvoice.Size = new System.Drawing.Size(117, 27);
+            this.BtnUpdateInvoice.Size = new System.Drawing.Size(75, 27);
             this.BtnUpdateInvoice.TabIndex = 7;
-            this.BtnUpdateInvoice.Text = "Enter Payment";
+            this.BtnUpdateInvoice.Text = "Update";
             this.BtnUpdateInvoice.UseVisualStyleBackColor = true;
             this.BtnUpdateInvoice.Click += new System.EventHandler(this.BtnUpdateInvoice_Click);
             // 
             // DateInvoicePaidDate
             // 
             this.DateInvoicePaidDate.Enabled = false;
-            this.DateInvoicePaidDate.Location = new System.Drawing.Point(15, 212);
+            this.DateInvoicePaidDate.Location = new System.Drawing.Point(135, 109);
             this.DateInvoicePaidDate.Name = "DateInvoicePaidDate";
             this.DateInvoicePaidDate.Size = new System.Drawing.Size(243, 23);
             this.DateInvoicePaidDate.TabIndex = 6;
@@ -1287,35 +961,65 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(12, 183);
+            this.label24.Location = new System.Drawing.Point(16, 115);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(109, 16);
+            this.label24.Size = new System.Drawing.Size(101, 17);
             this.label24.TabIndex = 5;
             this.label24.Text = "Payment Date:";
             // 
             // LblInvoiceNumber
             // 
             this.LblInvoiceNumber.AutoSize = true;
-            this.LblInvoiceNumber.Location = new System.Drawing.Point(12, 64);
+            this.LblInvoiceNumber.Location = new System.Drawing.Point(132, 72);
             this.LblInvoiceNumber.Name = "LblInvoiceNumber";
-            this.LblInvoiceNumber.Size = new System.Drawing.Size(30, 17);
+            this.LblInvoiceNumber.Size = new System.Drawing.Size(54, 17);
             this.LblInvoiceNumber.TabIndex = 4;
-            this.LblInvoiceNumber.Text = "INV";
+            this.LblInvoiceNumber.Text = "label24";
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(12, 37);
+            this.label23.Location = new System.Drawing.Point(16, 72);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(120, 16);
+            this.label23.Size = new System.Drawing.Size(110, 17);
             this.label23.TabIndex = 3;
             this.label23.Text = "Invoice Number:";
             // 
+            // RadInPaidNo
+            // 
+            this.RadInPaidNo.AutoSize = true;
+            this.RadInPaidNo.Checked = true;
+            this.RadInPaidNo.Location = new System.Drawing.Point(118, 29);
+            this.RadInPaidNo.Name = "RadInPaidNo";
+            this.RadInPaidNo.Size = new System.Drawing.Size(44, 21);
+            this.RadInPaidNo.TabIndex = 2;
+            this.RadInPaidNo.TabStop = true;
+            this.RadInPaidNo.Text = "No";
+            this.RadInPaidNo.UseVisualStyleBackColor = true;
+            // 
+            // RadInPaidYes
+            // 
+            this.RadInPaidYes.AutoSize = true;
+            this.RadInPaidYes.Location = new System.Drawing.Point(62, 29);
+            this.RadInPaidYes.Name = "RadInPaidYes";
+            this.RadInPaidYes.Size = new System.Drawing.Size(50, 21);
+            this.RadInPaidYes.TabIndex = 1;
+            this.RadInPaidYes.Text = "Yes";
+            this.RadInPaidYes.UseVisualStyleBackColor = true;
+            this.RadInPaidYes.CheckedChanged += new System.EventHandler(this.RadInPaidYes_CheckedChanged);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(16, 33);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(40, 17);
+            this.label22.TabIndex = 0;
+            this.label22.Text = "Paid:";
+            // 
             // BtnDeleteInvoice
             // 
-            this.BtnDeleteInvoice.Location = new System.Drawing.Point(603, 571);
+            this.BtnDeleteInvoice.Location = new System.Drawing.Point(723, 446);
             this.BtnDeleteInvoice.Name = "BtnDeleteInvoice";
             this.BtnDeleteInvoice.Size = new System.Drawing.Size(115, 27);
             this.BtnDeleteInvoice.TabIndex = 4;
@@ -1323,9 +1027,29 @@
             this.BtnDeleteInvoice.UseVisualStyleBackColor = true;
             this.BtnDeleteInvoice.Click += new System.EventHandler(this.BtnDeleteInvoice_Click);
             // 
+            // BtnViewInvoice
+            // 
+            this.BtnViewInvoice.Location = new System.Drawing.Point(602, 446);
+            this.BtnViewInvoice.Name = "BtnViewInvoice";
+            this.BtnViewInvoice.Size = new System.Drawing.Size(115, 27);
+            this.BtnViewInvoice.TabIndex = 3;
+            this.BtnViewInvoice.Text = "View";
+            this.BtnViewInvoice.UseVisualStyleBackColor = true;
+            this.BtnViewInvoice.Click += new System.EventHandler(this.BtnViewInvoice_Click);
+            // 
+            // BtnEditInvoice
+            // 
+            this.BtnEditInvoice.Location = new System.Drawing.Point(481, 446);
+            this.BtnEditInvoice.Name = "BtnEditInvoice";
+            this.BtnEditInvoice.Size = new System.Drawing.Size(115, 27);
+            this.BtnEditInvoice.TabIndex = 2;
+            this.BtnEditInvoice.Text = "Edit";
+            this.BtnEditInvoice.UseVisualStyleBackColor = true;
+            this.BtnEditInvoice.Click += new System.EventHandler(this.BtnEditInvoice_Click);
+            // 
             // BtnNewInvoice
             // 
-            this.BtnNewInvoice.Location = new System.Drawing.Point(482, 571);
+            this.BtnNewInvoice.Location = new System.Drawing.Point(360, 446);
             this.BtnNewInvoice.Name = "BtnNewInvoice";
             this.BtnNewInvoice.Size = new System.Drawing.Size(115, 27);
             this.BtnNewInvoice.TabIndex = 1;
@@ -1346,9 +1070,8 @@
             this.InvoiceDGV.ReadOnly = true;
             this.InvoiceDGV.RowHeadersVisible = false;
             this.InvoiceDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.InvoiceDGV.Size = new System.Drawing.Size(1366, 517);
+            this.InvoiceDGV.Size = new System.Drawing.Size(1366, 396);
             this.InvoiceDGV.TabIndex = 0;
-            this.InvoiceDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceDGV_CellClick);
             // 
             // products
             // 
@@ -1360,7 +1083,7 @@
             this.products.Location = new System.Drawing.Point(4, 25);
             this.products.Name = "products";
             this.products.Padding = new System.Windows.Forms.Padding(3);
-            this.products.Size = new System.Drawing.Size(1706, 956);
+            this.products.Size = new System.Drawing.Size(1426, 775);
             this.products.TabIndex = 5;
             this.products.Text = "Products";
             // 
@@ -1511,7 +1234,7 @@
             this.reports.Location = new System.Drawing.Point(4, 25);
             this.reports.Name = "reports";
             this.reports.Padding = new System.Windows.Forms.Padding(3);
-            this.reports.Size = new System.Drawing.Size(1706, 956);
+            this.reports.Size = new System.Drawing.Size(1426, 775);
             this.reports.TabIndex = 6;
             this.reports.Text = "Reports";
             // 
@@ -1627,7 +1350,7 @@
             this.system.Location = new System.Drawing.Point(4, 25);
             this.system.Name = "system";
             this.system.Padding = new System.Windows.Forms.Padding(3);
-            this.system.Size = new System.Drawing.Size(1706, 956);
+            this.system.Size = new System.Drawing.Size(1426, 775);
             this.system.TabIndex = 7;
             this.system.Text = "System";
             // 
@@ -1663,21 +1386,30 @@
             // 
             // BtnLogout
             // 
-            this.BtnLogout.Location = new System.Drawing.Point(1652, 12);
+            this.BtnLogout.Location = new System.Drawing.Point(1372, 9);
             this.BtnLogout.Name = "BtnLogout";
             this.BtnLogout.Size = new System.Drawing.Size(75, 23);
             this.BtnLogout.TabIndex = 2;
             this.BtnLogout.Text = "Logout";
             this.BtnLogout.UseVisualStyleBackColor = true;
-            this.BtnLogout.Visible = false;
             this.BtnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
+            // 
+            // BtnEmailInvoice
+            // 
+            this.BtnEmailInvoice.Location = new System.Drawing.Point(965, 446);
+            this.BtnEmailInvoice.Name = "BtnEmailInvoice";
+            this.BtnEmailInvoice.Size = new System.Drawing.Size(115, 27);
+            this.BtnEmailInvoice.TabIndex = 8;
+            this.BtnEmailInvoice.Text = "Email";
+            this.BtnEmailInvoice.UseVisualStyleBackColor = true;
+            this.BtnEmailInvoice.Click += new System.EventHandler(this.BtnEmailInvoice_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(1739, 1030);
+            this.ClientSize = new System.Drawing.Size(1459, 829);
             this.Controls.Add(this.BtnLogout);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1694,25 +1426,12 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.order.ResumeLayout(false);
-            this.groupBox8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ViewOrderItemsDGV)).EndInit();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersDGV)).EndInit();
             this.customers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDGV)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.quotation.ResumeLayout(false);
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.QuotesDGV)).EndInit();
-            this.groupBox9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ViewQuoteItemsDGV)).EndInit();
             this.invoices.ResumeLayout(false);
-            this.Invoice_Payments.ResumeLayout(false);
-            this.Invoice_Payments.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PaymentsDGV)).EndInit();
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ViewItemsDGV)).EndInit();
             this.groupBox4.ResumeLayout(false);
@@ -1766,7 +1485,9 @@
         private System.Windows.Forms.TextBox TxtSupEmail;
         private System.Windows.Forms.TextBox TxtSupRepName;
         private System.Windows.Forms.TextBox TxtSupCompany;
+        private System.Windows.Forms.Button BtnEditOrder;
         private System.Windows.Forms.Button BtnDeleteOrder;
+        private System.Windows.Forms.Button BtnViewOrder;
         private System.Windows.Forms.Button BtnNewOrder;
         private System.Windows.Forms.DataGridView OrdersDGV;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -1797,6 +1518,8 @@
         private System.Windows.Forms.TabPage invoices;
         private System.Windows.Forms.DataGridView InvoiceDGV;
         private System.Windows.Forms.Button BtnDeleteInvoice;
+        private System.Windows.Forms.Button BtnViewInvoice;
+        private System.Windows.Forms.Button BtnEditInvoice;
         private System.Windows.Forms.Button BtnNewInvoice;
         private System.Windows.Forms.TabPage products;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -1814,12 +1537,17 @@
         private System.Windows.Forms.DataGridView ProductDGV;
         private System.Windows.Forms.TextBox TxtProductID;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button BtnCancelUpdate;
         private System.Windows.Forms.Button BtnUpdateInvoice;
         private System.Windows.Forms.DateTimePicker DateInvoicePaidDate;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label LblInvoiceNumber;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.RadioButton RadInPaidNo;
+        private System.Windows.Forms.RadioButton RadInPaidYes;
+        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button BtnHideInItems;
         private System.Windows.Forms.DataGridView ViewItemsDGV;
         private System.Windows.Forms.DataVisualization.Charting.Chart CRTSalesVsExpenses;
         private System.Windows.Forms.TabPage reports;
@@ -1840,36 +1568,6 @@
         private System.Windows.Forms.Button BtnBackup;
         private System.Windows.Forms.Button BtnConvertInvoice;
         private System.Windows.Forms.Button BtnEmailInvoice;
-        private System.Windows.Forms.GroupBox Invoice_Payments;
-        private System.Windows.Forms.DataGridView PaymentsDGV;
-        private System.Windows.Forms.Label LblOutstanding;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox TxtPaymentAmount;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.TextBox TxtInvoiceNumber;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Button BtnUpdateOrder;
-        private System.Windows.Forms.DateTimePicker DtInvoiceDate;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label LblOrderNumber;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.DataGridView ViewOrderItemsDGV;
-        private System.Windows.Forms.TabPage quotation;
-        private System.Windows.Forms.DataGridView QuotesDGV;
-        private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.DataGridView ViewQuoteItemsDGV;
-        private System.Windows.Forms.Button BnDeleteQuote;
-        private System.Windows.Forms.Button BtnNewQuote;
-        private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.Label LblCustomerContact;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label LblCustomerName;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Button BtnConvertQuote;
-        private System.Windows.Forms.Button BtnEmailQuote;
     }
 }
 

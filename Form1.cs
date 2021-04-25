@@ -25,7 +25,6 @@ namespace Altered
             FillProductGrid();
             FillInvoiceGrid();
             FillCharts();
-            FillQuotesGrid();
         }
 
         public void FillSupplierGrid()
@@ -178,36 +177,6 @@ namespace Altered
             }
         }
 
-        public void FillQuotesGrid()
-        {
-            string query = "SELECT quote_number 'Quote Number', customerID 'Customer ID', quote_date 'Date', FORMAT(quote_total, 'C', 'en-za') \"Quote Total\" FROM tblQuotations";
-
-            using (SqlConnection con = new SqlConnection(Connection.ConnectionString()))
-            {
-                using (DataSet ds = new DataSet())
-                {
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        try
-                        {
-                            con.Open();
-                            using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                            {
-                                adapter.Fill(ds);
-                                QuotesDGV.DataSource = ds.Tables[0];
-                            }
-                        }
-                        catch (SqlException ex)
-                        {
-                            _ = MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        con.Close();
-                    }
-                }
-            }
-        }
-
         public void FillInvoiceGrid()
         {
             string query = "SELECT invoice_number \"Invoice Number\", customerID \"Customer ID\", invoice_date \"Invoice Date\", paid Paid, invoice_paid_date " +
@@ -236,7 +205,6 @@ namespace Altered
                     }
                 }
             }
-            InvoiceDGV.Rows[1].Selected = true;
         }
 
         private void FillCharts()
@@ -448,15 +416,25 @@ namespace Altered
         {
             NewOrder newOrder = new NewOrder(this);
             newOrder.ShowDialog();
-            FillCharts();
         }
 
-        private void BtnNewQuote_Click(object sender, EventArgs e)
+        private void BtnEditOrder_Click(object sender, EventArgs e)
         {
-            NewQuote newQuote = new NewQuote(this);
-            newQuote.ShowDialog();
-            FillCharts();
+            if (OrdersDGV.CurrentRow.Cells[3].Value.ToString() != "")
+            {
+                MessageBox.Show("The selected order cannot be updated as its process is complete", "Update Order", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
+            }
+            else
+            {
+                UpdateOrder updateOrder = new UpdateOrder
+                {
+                    order_number = OrdersDGV.CurrentRow.Cells[0].Value.ToString()
+                };
+                EditOrder editOrder = new EditOrder(updateOrder, this);
+                editOrder.ShowDialog();
+            }
+            FillOrdersGrid();
         }
 
         private void BtnAddCustomer_Click(object sender, EventArgs e)
@@ -605,6 +583,26 @@ namespace Altered
             DeleteCommand(table, column, ID);
         }
 
+        private void BtnViewOrder_Click(object sender, EventArgs e)
+        {
+            DateTime? invoice_date = null;
+            if (OrdersDGV.CurrentRow.Cells[5].Value.ToString() != "")
+            {
+                invoice_date = DateTime.Parse(OrdersDGV.CurrentRow.Cells[5].Value.ToString());
+            }
+
+            ViewOrderData viewOrderData = new ViewOrderData
+            {
+                supplierID = OrdersDGV.CurrentRow.Cells[0].Value.ToString(),
+                order_number = OrdersDGV.CurrentRow.Cells[2].Value.ToString(),                
+                order_date = DateTime.Parse(OrdersDGV.CurrentRow.Cells[3].Value.ToString()),
+                invoice_number = OrdersDGV.CurrentRow.Cells[4].Value.ToString(),
+                invoice_date = invoice_date
+            };
+            ViewOrder viewOrder = new ViewOrder(viewOrderData, this);
+            viewOrder.ShowDialog();
+        }
+
         private void BtnNewInvoice_Click(object sender, EventArgs e)
         {
             NewInvoice newInvoice = new NewInvoice(this);
@@ -665,40 +663,111 @@ namespace Altered
             BtnAddProduct.Text = "Add";
         }
 
+        private void BtnEditInvoice_Click(object sender, EventArgs e)
+        {
+            groupBox4.Visible = true;
+            LblInvoiceNumber.Text = InvoiceDGV.CurrentRow.Cells[0].Value.ToString();
+
+            if (InvoiceDGV.CurrentRow.Cells[3].Value.ToString() == "Y")
+            {
+                RadInPaidYes.Checked = true;
+            }
+            else
+            {
+                RadInPaidNo.Checked = true;
+            }
+
+
+            if (RadInPaidYes.Checked == true)
+            {
+                DateInvoicePaidDate.Enabled = true;
+            }
+            else
+            {
+                DateInvoicePaidDate.Enabled = false;
+            }
+
+            if (InvoiceDGV.CurrentRow.Cells[4].Value.ToString() != "")
+            {
+                DateInvoicePaidDate.Value = DateTime.Parse(InvoiceDGV.CurrentRow.Cells[4].Value.ToString());
+            }
+            else
+            {
+                DateInvoicePaidDate.Value = DateTime.Today;
+            }
+        }
+
+        private void BtnCancelUpdate_Click(object sender, EventArgs e)
+        {
+            groupBox4.Visible = false;
+        }
+
+        private void RadInPaidYes_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadInPaidYes.Checked == true)
+            {
+                DateInvoicePaidDate.Enabled = true;
+                BtnUpdateInvoice.Enabled = true;
+            }
+            else
+            {
+                DateInvoicePaidDate.Enabled = false;
+                BtnUpdateInvoice.Enabled = false;
+            }
+        }
+
         private void BtnUpdateInvoice_Click(object sender, EventArgs e)
         {
             int rowIndex = InvoiceDGV.CurrentRow.Index;
             string invoice_number = LblInvoiceNumber.Text;
-            DateTime paymentDate = DateTime.Parse(DateInvoicePaidDate.Value.ToString("yyyy/MM/dd"));
-            double paymentAmount = 0.00;
-            double invoiceTotal = double.Parse(InvoiceDGV.CurrentRow.Cells[5].Value.ToString().Substring(1));
+            char paid = 'Y';
+            DateTime? invoice_paid_date = DateTime.Parse(DateInvoicePaidDate.Value.ToString("yyyy/MM/dd"));
 
-            if (ValidateDoubles(TxtPaymentAmount.Text) == false)
-            {
-                MessageBox.Show("Enter a valid payment amount", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TxtPaymentAmount.Focus();
-                TxtPaymentAmount.SelectAll();
-            }
-            else
-            {
-                paymentAmount = double.Parse(TxtPaymentAmount.Text);
-            }
-
-            if (paymentAmount <= 0)
-            {
-                MessageBox.Show("Payment amount may not be less than or equal to R0.00", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TxtPaymentAmount.Focus();
-                TxtPaymentAmount.SelectAll();
-            }
-
-            _ = new Invoice(invoice_number, paymentDate, invoiceTotal, paymentAmount);
-
+            _ = new Invoice(invoice_number, paid, invoice_paid_date);
+            groupBox4.Visible = false;
             FillInvoiceGrid();
             FillCharts();
-            DisplayInvoicePayments();
-            TxtPaymentAmount.Clear();
             InvoiceDGV.Rows[rowIndex].Selected = true;
             InvoiceDGV.CurrentCell = InvoiceDGV.Rows[rowIndex].Cells[0];
+        }
+
+        private void BtnViewInvoice_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT quantity Quantity, t2.description Description, FORMAT(t1.price, 'C', 'en-za') Price, FORMAT(t1.price * quantity, 'C', 'en-za') Total";
+            query += " FROM tblInvoice_Items t1 JOIN tblProducts t2 ON t2.productID = t1.productID WHERE invoice_number = @order_number";
+
+            using (SqlConnection con = new SqlConnection(Connection.ConnectionString()))
+            {
+                using (DataSet ds = new DataSet())
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@order_number", SqlDbType.VarChar).Value = InvoiceDGV.CurrentRow.Cells[0].Value.ToString();
+
+                        try
+                        {
+                            con.Open();
+                            using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                            {
+                                adapter.Fill(ds);
+                                ViewItemsDGV.DataSource = ds.Tables[0];
+                            }
+                            con.Close();
+                        }
+                        catch (SqlException ex)
+                        {
+                            _ = MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            groupBox5.Visible = true;
+        }
+
+        private void BtnHideInItems_Click(object sender, EventArgs e)
+        {
+            groupBox5.Visible = false;
         }
 
         private void BtnDeleteInvoice_Click(object sender, EventArgs e)
@@ -706,15 +775,6 @@ namespace Altered
             string ID = InvoiceDGV.CurrentRow.Cells[0].Value.ToString();
             string table = "tblInvoices";
             string column = "invoice_number";
-
-            DeleteCommand(table, column, ID);
-        }
-
-        private void BnDeleteQuote_Click(object sender, EventArgs e)
-        {
-            string ID = QuotesDGV.CurrentRow.Cells[0].Value.ToString();
-            string table = "tblQuotations";
-            string column = "quote_number";
 
             DeleteCommand(table, column, ID);
         }
@@ -896,19 +956,9 @@ namespace Altered
             InvoiceEmailPrint("Print");
         }
 
-        private void BtnConvertQuote_Click(object sender, EventArgs e)
-        {
-            QuoteEmailPrint("Print");
-        }
-
         private void BtnEmailInvoice_Click(object sender, EventArgs e)
         {
             InvoiceEmailPrint("Email");
-        }
-
-        private void BtnEmailQuote_Click(object sender, EventArgs e)
-        {
-            QuoteEmailPrint("Email");
         }
 
         private void InvoiceEmailPrint(string emailPrint)
@@ -922,361 +972,6 @@ namespace Altered
             queryItems += " FROM tblInvoice_Items t1 JOIN tblProducts t2 ON t2.productID = t1.productID WHERE invoice_number = '" + invoice_number + "'";
 
             _ = new ConvertDocument(invoice_number, customerID, invoice_date, query, queryItems, emailPrint);
-        }
-
-        private void QuoteEmailPrint(string emailPrint)
-        {
-            string quote_number = QuotesDGV.CurrentRow.Cells[0].Value.ToString();
-            string customerID = QuotesDGV.CurrentRow.Cells[1].Value.ToString();
-            string quote_date = QuotesDGV.CurrentRow.Cells[2].Value.ToString();
-
-            string query = "SELECT * FROM tblCustomer WHERE customerID = '" + customerID + "'";
-            string queryItems = "SELECT quantity Quantity, t2.description Description, t1.price Price, t1.price * quantity Total FROM tblQuoteItems t1 JOIN tblProducts t2 " +
-                "ON t2.productID = t1.productID WHERE quote_number = '" + quote_number + "'";
-
-            _ = new ConvertQuote(quote_number, customerID, quote_date, query, queryItems, emailPrint);
-
-        }
-
-        private void InvoiceDGV_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            DisplayInvoiceDetails();
-            DisplayInvoiceItems();
-            DisplayInvoicePayments();
-        }
-
-        private void DisplayInvoiceDetails()
-        {
-            LblInvoiceNumber.Text = InvoiceDGV.CurrentRow.Cells[0].Value.ToString();
-
-            if (InvoiceDGV.CurrentRow.Cells[3].Value.ToString() == "Y")
-            {
-                BtnUpdateInvoice.Enabled = false;
-                DateInvoicePaidDate.Enabled = false;
-            }
-            else if (InvoiceDGV.CurrentRow.Cells[3].Value.ToString() == "N")
-            {
-                BtnUpdateInvoice.Enabled = true;
-                DateInvoicePaidDate.Enabled = true;
-            }
-
-            if (InvoiceDGV.CurrentRow.Cells[4].Value.ToString() != "")
-            {
-                DateInvoicePaidDate.Value = DateTime.Parse(InvoiceDGV.CurrentRow.Cells[4].Value.ToString());
-            }
-            else
-            {
-                DateInvoicePaidDate.Value = DateTime.Today;
-            }
-        }
-
-        private void DisplayInvoiceItems()
-        {
-            string query = "SELECT quantity Quantity, t2.description Description, FORMAT(t1.price, 'C', 'en-za') Price, FORMAT(t1.price * quantity, 'C', 'en-za') Total";
-            query += " FROM tblInvoice_Items t1 JOIN tblProducts t2 ON t2.productID = t1.productID WHERE invoice_number = @order_number";
-
-            using (SqlConnection con = new SqlConnection(Connection.ConnectionString()))
-            {
-                using (DataSet ds = new DataSet())
-                {
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@order_number", SqlDbType.VarChar).Value = InvoiceDGV.CurrentRow.Cells[0].Value.ToString();
-
-                        try
-                        {
-                            con.Open();
-                            using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                            {
-                                adapter.Fill(ds);
-                                ViewItemsDGV.DataSource = ds.Tables[0];
-                            }
-                            con.Close();
-                        }
-                        catch (SqlException ex)
-                        {
-                            _ = MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-            }
-        }
-
-        private void DisplayInvoicePayments()
-        {
-            string query = "SELECT invoice_number 'Invoice', payment_date 'Payment Date', FORMAT(invoice_total, 'C', 'en-za') 'Invoice Total', FORMAT(payment_amount, 'C', 'en-za') 'Amount Paid' FROM tblPayments WHERE invoice_number = @invoice_number";
-            string query2 = "SELECT invoice_paid_date, FORMAT(tblPayments.invoice_total - SUM(payment_amount), 'C', 'en-za') Outstanding FROM tblPayments JOIN tblInvoices ON tblPayments.invoice_number = tblInvoices.invoice_number " + "" +
-                "WHERE tblPayments.invoice_number = @invoice_number GROUP BY invoice_paid_date, tblPayments.invoice_total";
-            string invoice_number = InvoiceDGV.CurrentRow.Cells[0].Value.ToString();
-
-            using (SqlConnection con = new SqlConnection(Connection.ConnectionString()))
-            {
-                using (DataSet ds = new DataSet())
-                {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@invoice_number", SqlDbType.VarChar).Value = invoice_number;
-
-                        try
-                        {
-                            using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                            {
-                                adapter.Fill(ds);
-                                PaymentsDGV.DataSource = ds.Tables[0];
-                            }
-                        }
-                        catch (SqlException ex)
-                        {
-                            _ = MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-
-
-                    using (SqlCommand cmd = new SqlCommand(query2, con))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@invoice_number", SqlDbType.VarChar).Value = invoice_number;
-
-                        try
-                        {
-                            using (SqlDataReader sdr = cmd.ExecuteReader())
-                            {
-                                if (sdr.Read())
-                                {
-                                    LblOutstanding.Text = sdr["Outstanding"].ToString();
-                                }
-                                else
-                                {
-                                    LblOutstanding.Text = InvoiceDGV.CurrentRow.Cells[5].Value.ToString();
-                                }
-                            }
-                        }
-                        catch (SqlException ex)
-                        {
-                            _ = MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    con.Close();
-                }
-            }
-        }
-
-        private void OrdersDGV_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            DisplayOrderDetails();
-            DisplayOrderItems();
-        }
-
-        private void DisplayOrderDetails()
-        {
-            LblOrderNumber.Text = OrdersDGV.CurrentRow.Cells[2].Value.ToString();
-
-            if (OrdersDGV.CurrentRow.Cells[4].Value.ToString() != "")
-            {
-                BtnUpdateOrder.Enabled = false;
-                DtInvoiceDate.Enabled = false;
-                TxtInvoiceNumber.ReadOnly = true;
-                TxtInvoiceNumber.Text = OrdersDGV.CurrentRow.Cells[4].Value.ToString();
-                DtInvoiceDate.Value = DateTime.Parse(OrdersDGV.CurrentRow.Cells[5].Value.ToString());
-            }
-            else if (OrdersDGV.CurrentRow.Cells[4].Value.ToString() == "")
-            {
-                BtnUpdateOrder.Enabled = true;
-                DtInvoiceDate.Enabled = true;
-                TxtInvoiceNumber.ReadOnly = false;
-                TxtInvoiceNumber.Text = "";
-                DtInvoiceDate.Value = DateTime.Today;
-            }
-        }
-
-        private void DisplayOrderItems()
-        {
-            ViewOrderItemsDGV.DataSource = null;
-            string supplierID = OrdersDGV.CurrentRow.Cells[0].Value.ToString();
-            string query = "SELECT registered FROM tblSupplier WHERE supplierID = @supplierID";
-            string vatQuery = "SELECT quantity Quantity, description Description, FORMAT(price, 'C', 'en-za') Price, FORMAT((price * quantity) *0.15, 'C', 'en-za') 'VAT @ 15%', FORMAT((price * quantity) * 1.15, 'C', 'en-za') Total";
-            vatQuery += " FROM tblOrder_items WHERE order_number = @order_number";
-            string noVatQuery = "SELECT quantity Quantity, description Description, FORMAT(price, 'C', 'en-za') Price, FORMAT(price * quantity, 'C', 'en-za') Total FROM tblOrder_items WHERE order_number = @order_number";
-
-            char registered = 'N';
-
-            using (SqlConnection con = new SqlConnection(Connection.ConnectionString()))
-            {
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@supplierID", SqlDbType.VarChar).Value = supplierID;
-
-                    try
-                    {
-                        con.Open();
-                        using (SqlDataReader sdr = cmd.ExecuteReader())
-                        {
-                            sdr.Read();
-                            registered = char.Parse(sdr["registered"].ToString());
-                        }
-                        con.Close();
-                    }
-                    catch (SqlException ex)
-                    {
-                        _ = MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-
-            if (registered == 'Y')
-            {
-                using (SqlConnection con = new SqlConnection(Connection.ConnectionString()))
-                {
-                    using (DataSet ds = new DataSet())
-                    {
-                        using (SqlCommand cmd = new SqlCommand(vatQuery, con))
-                        {
-                            cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.AddWithValue("@order_number", SqlDbType.VarChar).Value = OrdersDGV.CurrentRow.Cells[2].Value.ToString();
-
-                            try
-                            {
-                                con.Open();
-                                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                                {
-                                    adapter.Fill(ds);
-                                    ViewOrderItemsDGV.DataSource = ds.Tables[0];
-                                }
-                                con.Close();
-                            }
-                            catch (SqlException ex)
-                            {
-                                _ = MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                    }
-                }
-            }
-            else if (registered == 'N')
-            {
-                using (SqlConnection con = new SqlConnection(Connection.ConnectionString()))
-                {
-                    using (DataSet ds = new DataSet())
-                    {
-                        using (SqlCommand cmd = new SqlCommand(noVatQuery, con))
-                        {
-                            cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.AddWithValue("@order_number", SqlDbType.VarChar).Value = OrdersDGV.CurrentRow.Cells[2].Value.ToString();
-
-                            try
-                            {
-                                con.Open();
-                                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                                {
-                                    adapter.Fill(ds);
-                                    ViewOrderItemsDGV.DataSource = ds.Tables[0];
-                                }
-                                con.Close();
-                            }
-                            catch (SqlException ex)
-                            {
-                                _ = MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private void QuotesDGV_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            DisplayQuoteDetails();
-            DisplayQuoteItems();
-        }
-
-        private void DisplayQuoteDetails()
-        {
-            string query = "SELECT rep_name, telephone, cellphone FROM tblCustomer WHERE customerID = @customerID";
-
-            using (SqlConnection con = new SqlConnection(Connection.ConnectionString()))
-            {
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@customerID", SqlDbType.VarChar).Value = QuotesDGV.CurrentRow.Cells[1].Value.ToString();
-
-                    try
-                    {
-                        con.Open();
-                        using (SqlDataReader sdr = cmd.ExecuteReader())
-                        {
-                            sdr.Read();
-                            LblCustomerName.Text = sdr["rep_name"].ToString();
-
-                            if (sdr["telephone"].ToString() != "")
-                            {
-                                LblCustomerContact.Text = sdr["telephone"].ToString();
-                            }
-                            else
-                            {
-                                LblCustomerContact.Text = sdr["cellphone"].ToString();
-                            }
-                        }
-                    }
-                    catch (SqlException ex)
-                    {
-                        _ = MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-        }
-
-        private void DisplayQuoteItems()
-        {
-            string query = "SELECT quantity Quantity, t2.description Description, FORMAT(t1.price, 'C', 'en-za') Price, FORMAT(t1.price * quantity, 'C', 'en-za') Total ";
-            query += "FROM tblQuoteItems t1 JOIN tblProducts t2 ON t2.productID = t1.productID ";
-            query += "WHERE quote_number = @quote_number";
-
-            using (SqlConnection con = new SqlConnection(Connection.ConnectionString()))
-            {
-                using (DataSet ds = new DataSet())
-                {
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@quote_number", SqlDbType.VarChar).Value = QuotesDGV.CurrentRow.Cells[0].Value.ToString();
-
-                        try
-                        {
-                            con.Open();
-                            using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                            {
-                                adapter.Fill(ds);
-                                ViewQuoteItemsDGV.DataSource = ds.Tables[0];
-                            }
-                            con.Close();
-                        }
-                        catch (SqlException ex)
-                        {
-                            _ = MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-            }
-        }
-
-        private void BtnUpdateOrder_Click(object sender, EventArgs e)
-        {
-            string order_number = LblOrderNumber.Text;
-            string invoice_number = TxtInvoiceNumber.Text;
-            DateTime invoice_date = DateTime.Parse(DtInvoiceDate.Value.ToString("yyyy/MM/dd"));
-            int rowIndex = OrdersDGV.CurrentRow.Index;
-
-            _ = new Order(order_number, invoice_number, invoice_date);
-
-            FillCharts();
-            TxtInvoiceNumber.Clear();
-            OrdersDGV.Rows[rowIndex].Selected = true;
-            OrdersDGV.CurrentCell = OrdersDGV.Rows[rowIndex].Cells[0];
         }
     }
 }

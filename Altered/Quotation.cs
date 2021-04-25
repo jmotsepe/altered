@@ -27,7 +27,7 @@ namespace Altered
             ItemDGV = itemDGV;
 
             CommitQuotation();
-        }
+        }        
 
         private void CommitQuotation()
         {
@@ -82,5 +82,7 @@ namespace Altered
                 con.Close();
             }
         }
+
+
     }
 }
