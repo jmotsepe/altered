@@ -239,7 +239,7 @@ namespace Altered
             InvoiceDGV.Rows[1].Selected = true;
         }
 
-        private void FillCharts()
+        private void FillCharts()                                                                                                                                                         
         {
             string year = DateTime.Today.ToString("yyyy");
             string query = "SELECT DATENAME(month, DATEADD(MONTH, MONTH(invoice_paid_date), -1)) Month, SUM(price * quantity) Sales FROM tblInvoices t1 JOIN " +
@@ -248,8 +248,8 @@ namespace Altered
             string query2 = "SELECT DATENAME(month, DATEADD(MONTH, MONTH(invoice_date), -1)) Month, SUM(price * quantity) Purchases FROM tblOrders t1 JOIN tblOrder_Items t2 ON t1.order_number = t2.order_number " +
                 "WHERE year(invoice_date) = '" + year + "' GROUP BY MONTH(invoice_date) ORDER BY MONTH(invoice_date)";
 
-            string query3 = "SELECT year(invoice_date) Year, SUM(price * quantity) Sales FROM tblInvoices t1 JOIN tblInvoice_Items t2 ON t1.invoice_number = t2.invoice_number " +
-                "WHERE t1.paid = 'Y' GROUP BY year(invoice_date) ORDER BY year(invoice_date)";
+            string query3 = "SELECT year(invoice_paid_date) Year, SUM(invoice_total) Sales FROM tblInvoices WHERE year(invoice_paid_date) IS NOT NULL " +
+                "GROUP BY year(invoice_paid_date) ORDER BY year(invoice_paid_date)";
 
             string query4 = "SELECT year(invoice_date) Year, SUM(price * quantity) Expenses FROM tblOrders t1 JOIN tblOrder_Items t2 ON t1.order_number = t2.order_number " +
                 "WHERE invoice_date IS NOT NULL GROUP BY year(invoice_date) ORDER BY year(invoice_date)";
@@ -1277,6 +1277,12 @@ namespace Altered
             TxtInvoiceNumber.Clear();
             OrdersDGV.Rows[rowIndex].Selected = true;
             OrdersDGV.CurrentCell = OrdersDGV.Rows[rowIndex].Cells[0];
+            FillOrdersGrid(); 
+        }
+
+        private void BtnYearSales_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

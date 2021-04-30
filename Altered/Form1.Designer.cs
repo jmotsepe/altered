@@ -166,7 +166,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.TxtReportYear = new System.Windows.Forms.TextBox();
             this.BtnClearReports = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.BtnYearSales = new System.Windows.Forms.Button();
             this.BtnMonthlyExpenses = new System.Windows.Forms.Button();
             this.BtnYearlySales = new System.Windows.Forms.Button();
             this.system = new System.Windows.Forms.TabPage();
@@ -1555,7 +1555,7 @@
             this.panel1.Controls.Add(this.label25);
             this.panel1.Controls.Add(this.TxtReportYear);
             this.panel1.Controls.Add(this.BtnClearReports);
-            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.BtnYearSales);
             this.panel1.Controls.Add(this.BtnMonthlyExpenses);
             this.panel1.Controls.Add(this.BtnYearlySales);
             this.panel1.Location = new System.Drawing.Point(35, 57);
@@ -1590,15 +1590,16 @@
             this.BtnClearReports.UseVisualStyleBackColor = true;
             this.BtnClearReports.Click += new System.EventHandler(this.BtnClearReports_Click);
             // 
-            // button3
+            // BtnYearSales
             // 
-            this.button3.Location = new System.Drawing.Point(31, 184);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(174, 39);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Visible = false;
+            this.BtnYearSales.Location = new System.Drawing.Point(31, 184);
+            this.BtnYearSales.Name = "BtnYearSales";
+            this.BtnYearSales.Size = new System.Drawing.Size(174, 39);
+            this.BtnYearSales.TabIndex = 2;
+            this.BtnYearSales.Text = "Yearly Sales";
+            this.BtnYearSales.UseVisualStyleBackColor = true;
+            this.BtnYearSales.Visible = false;
+            this.BtnYearSales.Click += new System.EventHandler(this.BtnYearSales_Click);
             // 
             // BtnMonthlyExpenses
             // 
@@ -1827,7 +1828,7 @@
         private System.Windows.Forms.DataGridView ReportsDGV;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button BtnClearReports;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button BtnYearSales;
         private System.Windows.Forms.Button BtnMonthlyExpenses;
         private System.Windows.Forms.Button BtnYearlySales;
         private System.Windows.Forms.Label label25;
