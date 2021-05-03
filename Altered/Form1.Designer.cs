@@ -166,14 +166,15 @@
             this.label25 = new System.Windows.Forms.Label();
             this.TxtReportYear = new System.Windows.Forms.TextBox();
             this.BtnClearReports = new System.Windows.Forms.Button();
-            this.BtnYearSales = new System.Windows.Forms.Button();
-            this.BtnMonthlyExpenses = new System.Windows.Forms.Button();
             this.BtnYearlySales = new System.Windows.Forms.Button();
+            this.BtnMonthlyExpenses = new System.Windows.Forms.Button();
+            this.BtnMonthlySales = new System.Windows.Forms.Button();
             this.system = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.BtnRestore = new System.Windows.Forms.Button();
             this.BtnBackup = new System.Windows.Forms.Button();
             this.BtnLogout = new System.Windows.Forms.Button();
+            this.BtnYearlyPurchases = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.home.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CRTYearlySales)).BeginInit();
@@ -1552,12 +1553,13 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.BtnYearlyPurchases);
             this.panel1.Controls.Add(this.label25);
             this.panel1.Controls.Add(this.TxtReportYear);
             this.panel1.Controls.Add(this.BtnClearReports);
-            this.panel1.Controls.Add(this.BtnYearSales);
-            this.panel1.Controls.Add(this.BtnMonthlyExpenses);
             this.panel1.Controls.Add(this.BtnYearlySales);
+            this.panel1.Controls.Add(this.BtnMonthlyExpenses);
+            this.panel1.Controls.Add(this.BtnMonthlySales);
             this.panel1.Location = new System.Drawing.Point(35, 57);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(236, 680);
@@ -1582,7 +1584,7 @@
             // 
             // BtnClearReports
             // 
-            this.BtnClearReports.Location = new System.Drawing.Point(31, 229);
+            this.BtnClearReports.Location = new System.Drawing.Point(31, 274);
             this.BtnClearReports.Name = "BtnClearReports";
             this.BtnClearReports.Size = new System.Drawing.Size(174, 39);
             this.BtnClearReports.TabIndex = 3;
@@ -1590,16 +1592,15 @@
             this.BtnClearReports.UseVisualStyleBackColor = true;
             this.BtnClearReports.Click += new System.EventHandler(this.BtnClearReports_Click);
             // 
-            // BtnYearSales
+            // BtnYearlySales
             // 
-            this.BtnYearSales.Location = new System.Drawing.Point(31, 184);
-            this.BtnYearSales.Name = "BtnYearSales";
-            this.BtnYearSales.Size = new System.Drawing.Size(174, 39);
-            this.BtnYearSales.TabIndex = 2;
-            this.BtnYearSales.Text = "Yearly Sales";
-            this.BtnYearSales.UseVisualStyleBackColor = true;
-            this.BtnYearSales.Visible = false;
-            this.BtnYearSales.Click += new System.EventHandler(this.BtnYearSales_Click);
+            this.BtnYearlySales.Location = new System.Drawing.Point(31, 184);
+            this.BtnYearlySales.Name = "BtnYearlySales";
+            this.BtnYearlySales.Size = new System.Drawing.Size(174, 39);
+            this.BtnYearlySales.TabIndex = 2;
+            this.BtnYearlySales.Text = "Yearly Sales";
+            this.BtnYearlySales.UseVisualStyleBackColor = true;
+            this.BtnYearlySales.Click += new System.EventHandler(this.BtnYearSales_Click);
             // 
             // BtnMonthlyExpenses
             // 
@@ -1611,15 +1612,15 @@
             this.BtnMonthlyExpenses.UseVisualStyleBackColor = true;
             this.BtnMonthlyExpenses.Click += new System.EventHandler(this.BtnMonthlyExpenses_Click);
             // 
-            // BtnYearlySales
+            // BtnMonthlySales
             // 
-            this.BtnYearlySales.Location = new System.Drawing.Point(31, 94);
-            this.BtnYearlySales.Name = "BtnYearlySales";
-            this.BtnYearlySales.Size = new System.Drawing.Size(174, 39);
-            this.BtnYearlySales.TabIndex = 0;
-            this.BtnYearlySales.Text = "Monthly Sales";
-            this.BtnYearlySales.UseVisualStyleBackColor = true;
-            this.BtnYearlySales.Click += new System.EventHandler(this.BtnYearlySales_Click);
+            this.BtnMonthlySales.Location = new System.Drawing.Point(31, 94);
+            this.BtnMonthlySales.Name = "BtnMonthlySales";
+            this.BtnMonthlySales.Size = new System.Drawing.Size(174, 39);
+            this.BtnMonthlySales.TabIndex = 0;
+            this.BtnMonthlySales.Text = "Monthly Sales";
+            this.BtnMonthlySales.UseVisualStyleBackColor = true;
+            this.BtnMonthlySales.Click += new System.EventHandler(this.BtnYearlySales_Click);
             // 
             // system
             // 
@@ -1672,6 +1673,16 @@
             this.BtnLogout.UseVisualStyleBackColor = true;
             this.BtnLogout.Visible = false;
             this.BtnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
+            // 
+            // BtnYearlyPurchases
+            // 
+            this.BtnYearlyPurchases.Location = new System.Drawing.Point(31, 229);
+            this.BtnYearlyPurchases.Name = "BtnYearlyPurchases";
+            this.BtnYearlyPurchases.Size = new System.Drawing.Size(174, 39);
+            this.BtnYearlyPurchases.TabIndex = 6;
+            this.BtnYearlyPurchases.Text = "Yearly Purchases";
+            this.BtnYearlyPurchases.UseVisualStyleBackColor = true;
+            this.BtnYearlyPurchases.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -1828,9 +1839,9 @@
         private System.Windows.Forms.DataGridView ReportsDGV;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button BtnClearReports;
-        private System.Windows.Forms.Button BtnYearSales;
-        private System.Windows.Forms.Button BtnMonthlyExpenses;
         private System.Windows.Forms.Button BtnYearlySales;
+        private System.Windows.Forms.Button BtnMonthlyExpenses;
+        private System.Windows.Forms.Button BtnMonthlySales;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox TxtReportYear;
         private System.Windows.Forms.DataVisualization.Charting.Chart CRTYearlySales;
@@ -1871,6 +1882,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button BtnConvertQuote;
         private System.Windows.Forms.Button BtnEmailQuote;
+        private System.Windows.Forms.Button BtnYearlyPurchases;
     }
 }
 

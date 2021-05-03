@@ -846,6 +846,63 @@ namespace Altered
             ReportsDGV.Visible = true;
         }
 
+        private void BtnYearSales_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT year(invoice_paid_date) Year, FORMAT(SUM(invoice_total), 'C', 'en-za') Sales FROM tblInvoices WHERE year(invoice_paid_date) IS NOT NULL " +
+                "GROUP BY year(invoice_paid_date) ORDER BY year(invoice_paid_date)";
+            
+            ReportsChart.Series["Series1"].Points.Clear();
+
+            using (SqlConnection con = new SqlConnection(Connection.ConnectionString()))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+
+                    try
+                    {
+                        using (SqlDataReader sdr = cmd.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                ReportsChart.Series["Series1"].Points.AddXY(sdr["Year"].ToString(), double.Parse(sdr["Sales"].ToString().Substring(1)));
+                                ReportsChart.Series["Series1"].LegendText = "Yearly Sales";
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        _ = MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+                using (DataSet ds = new DataSet())
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        try
+                        {
+                            using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                            {
+                                adapter.Fill(ds);
+                                ReportsDGV.DataSource = ds.Tables[0];
+                            }
+                        }
+                        catch (SqlException ex)
+                        {
+                            _ = MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        }
+                    }
+                }
+                con.Close();
+            }
+            ReportsChart.Visible = true;
+            ReportsDGV.Visible = true;
+        }
+
         private void BtnClearReports_Click(object sender, EventArgs e)
         {
             ReportsChart.Visible = false;
@@ -1280,7 +1337,7 @@ namespace Altered
             FillOrdersGrid(); 
         }
 
-        private void BtnYearSales_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }
