@@ -46,7 +46,6 @@ namespace Altered
         private void CreateQuote()
         {
             string path = "C:\\Program Files (x86)\\TMTech Solutions\\Altered EMS\\QuoteTemplate.xlsx";
-            //string path = "C:\\Users\\Admin\\source\\repos\\Altered\\Altered\\QuoteTemplate.xlsx";
             excelApplication = new Microsoft.Office.Interop.Excel.Application
             {
                 Visible = false
@@ -158,7 +157,6 @@ namespace Altered
             excelWorksheet.get_Range("J7").Value2 = CustomerID;
             excelWorksheet.get_Range("J8").Value2 = valid_until;
             excelWorksheet.get_Range("C44").Value2 = Quote_number;
-            //excelWorksheet.get_Range("K39").NumberFormat = "[$R-en-ZA] # ##0.00";
             if (registered == 'Y')
             {
                 excelWorksheet.get_Range("K39").Formula = "=K37 * 0.15";
@@ -184,10 +182,13 @@ namespace Altered
 
             excelWorkbook.ExportAsFixedFormat(XlFixedFormatType.xlTypePDF, pdfFile);
 
-            if (SendorPrint == "Print")
+            if (SendorPrint == "Convert")
             {
-                excelWorksheet.PrintOutEx(Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 System.Diagnostics.Process.Start(pdfFile);
+            }
+            else if (SendorPrint == "Print")
+            {
+                excelWorksheet.PrintOutEx(Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);                
             }
             else if (SendorPrint == "Email")
             {
