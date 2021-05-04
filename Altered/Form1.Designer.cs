@@ -111,7 +111,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.quotation = new System.Windows.Forms.TabPage();
-            this.BtnPrintQuote = new System.Windows.Forms.Button();
             this.BtnEmailQuote = new System.Windows.Forms.Button();
             this.BtnConvertQuote = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -125,7 +124,6 @@
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.ViewQuoteItemsDGV = new System.Windows.Forms.DataGridView();
             this.invoices = new System.Windows.Forms.TabPage();
-            this.BtnPrintInvoice = new System.Windows.Forms.Button();
             this.Invoice_Payments = new System.Windows.Forms.GroupBox();
             this.LblOutstanding = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -165,7 +163,6 @@
             this.ReportsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ReportsDGV = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.BtnYearlyPurchases = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.TxtReportYear = new System.Windows.Forms.TextBox();
             this.BtnClearReports = new System.Windows.Forms.Button();
@@ -177,6 +174,7 @@
             this.BtnRestore = new System.Windows.Forms.Button();
             this.BtnBackup = new System.Windows.Forms.Button();
             this.BtnLogout = new System.Windows.Forms.Button();
+            this.BtnYearlyPurchases = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.home.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CRTYearlySales)).BeginInit();
@@ -970,7 +968,6 @@
             // quotation
             // 
             this.quotation.BackColor = System.Drawing.Color.DimGray;
-            this.quotation.Controls.Add(this.BtnPrintQuote);
             this.quotation.Controls.Add(this.BtnEmailQuote);
             this.quotation.Controls.Add(this.BtnConvertQuote);
             this.quotation.Controls.Add(this.groupBox10);
@@ -985,19 +982,9 @@
             this.quotation.TabIndex = 8;
             this.quotation.Text = "Quotations";
             // 
-            // BtnPrintQuote
-            // 
-            this.BtnPrintQuote.Location = new System.Drawing.Point(918, 553);
-            this.BtnPrintQuote.Name = "BtnPrintQuote";
-            this.BtnPrintQuote.Size = new System.Drawing.Size(115, 27);
-            this.BtnPrintQuote.TabIndex = 20;
-            this.BtnPrintQuote.Text = "Print";
-            this.BtnPrintQuote.UseVisualStyleBackColor = true;
-            this.BtnPrintQuote.Click += new System.EventHandler(this.BtnPrintQuote_Click);
-            // 
             // BtnEmailQuote
             // 
-            this.BtnEmailQuote.Location = new System.Drawing.Point(1039, 553);
+            this.BtnEmailQuote.Location = new System.Drawing.Point(981, 553);
             this.BtnEmailQuote.Name = "BtnEmailQuote";
             this.BtnEmailQuote.Size = new System.Drawing.Size(115, 27);
             this.BtnEmailQuote.TabIndex = 19;
@@ -1007,7 +994,7 @@
             // 
             // BtnConvertQuote
             // 
-            this.BtnConvertQuote.Location = new System.Drawing.Point(797, 553);
+            this.BtnConvertQuote.Location = new System.Drawing.Point(860, 553);
             this.BtnConvertQuote.Name = "BtnConvertQuote";
             this.BtnConvertQuote.Size = new System.Drawing.Size(115, 27);
             this.BtnConvertQuote.TabIndex = 18;
@@ -1066,7 +1053,7 @@
             // 
             // BnDeleteQuote
             // 
-            this.BnDeleteQuote.Location = new System.Drawing.Point(676, 553);
+            this.BnDeleteQuote.Location = new System.Drawing.Point(739, 553);
             this.BnDeleteQuote.Name = "BnDeleteQuote";
             this.BnDeleteQuote.Size = new System.Drawing.Size(115, 27);
             this.BnDeleteQuote.TabIndex = 16;
@@ -1076,7 +1063,7 @@
             // 
             // BtnNewQuote
             // 
-            this.BtnNewQuote.Location = new System.Drawing.Point(555, 553);
+            this.BtnNewQuote.Location = new System.Drawing.Point(618, 553);
             this.BtnNewQuote.Name = "BtnNewQuote";
             this.BtnNewQuote.Size = new System.Drawing.Size(115, 27);
             this.BtnNewQuote.TabIndex = 15;
@@ -1129,7 +1116,6 @@
             // invoices
             // 
             this.invoices.BackColor = System.Drawing.Color.DimGray;
-            this.invoices.Controls.Add(this.BtnPrintInvoice);
             this.invoices.Controls.Add(this.Invoice_Payments);
             this.invoices.Controls.Add(this.BtnEmailInvoice);
             this.invoices.Controls.Add(this.BtnConvertInvoice);
@@ -1144,16 +1130,6 @@
             this.invoices.Size = new System.Drawing.Size(1706, 956);
             this.invoices.TabIndex = 4;
             this.invoices.Text = "Invoices";
-            // 
-            // BtnPrintInvoice
-            // 
-            this.BtnPrintInvoice.Location = new System.Drawing.Point(783, 553);
-            this.BtnPrintInvoice.Name = "BtnPrintInvoice";
-            this.BtnPrintInvoice.Size = new System.Drawing.Size(115, 27);
-            this.BtnPrintInvoice.TabIndex = 11;
-            this.BtnPrintInvoice.Text = "Print";
-            this.BtnPrintInvoice.UseVisualStyleBackColor = true;
-            this.BtnPrintInvoice.Click += new System.EventHandler(this.BtnPrintInvoice_Click);
             // 
             // Invoice_Payments
             // 
@@ -1204,7 +1180,7 @@
             // 
             // BtnEmailInvoice
             // 
-            this.BtnEmailInvoice.Location = new System.Drawing.Point(904, 553);
+            this.BtnEmailInvoice.Location = new System.Drawing.Point(845, 571);
             this.BtnEmailInvoice.Name = "BtnEmailInvoice";
             this.BtnEmailInvoice.Size = new System.Drawing.Size(115, 27);
             this.BtnEmailInvoice.TabIndex = 8;
@@ -1214,7 +1190,7 @@
             // 
             // BtnConvertInvoice
             // 
-            this.BtnConvertInvoice.Location = new System.Drawing.Point(662, 553);
+            this.BtnConvertInvoice.Location = new System.Drawing.Point(724, 571);
             this.BtnConvertInvoice.Name = "BtnConvertInvoice";
             this.BtnConvertInvoice.Size = new System.Drawing.Size(115, 27);
             this.BtnConvertInvoice.TabIndex = 7;
@@ -1340,7 +1316,7 @@
             // 
             // BtnDeleteInvoice
             // 
-            this.BtnDeleteInvoice.Location = new System.Drawing.Point(541, 553);
+            this.BtnDeleteInvoice.Location = new System.Drawing.Point(603, 571);
             this.BtnDeleteInvoice.Name = "BtnDeleteInvoice";
             this.BtnDeleteInvoice.Size = new System.Drawing.Size(115, 27);
             this.BtnDeleteInvoice.TabIndex = 4;
@@ -1350,7 +1326,7 @@
             // 
             // BtnNewInvoice
             // 
-            this.BtnNewInvoice.Location = new System.Drawing.Point(420, 553);
+            this.BtnNewInvoice.Location = new System.Drawing.Point(482, 571);
             this.BtnNewInvoice.Name = "BtnNewInvoice";
             this.BtnNewInvoice.Size = new System.Drawing.Size(115, 27);
             this.BtnNewInvoice.TabIndex = 1;
@@ -1589,16 +1565,6 @@
             this.panel1.Size = new System.Drawing.Size(236, 680);
             this.panel1.TabIndex = 0;
             // 
-            // BtnYearlyPurchases
-            // 
-            this.BtnYearlyPurchases.Location = new System.Drawing.Point(31, 229);
-            this.BtnYearlyPurchases.Name = "BtnYearlyPurchases";
-            this.BtnYearlyPurchases.Size = new System.Drawing.Size(174, 39);
-            this.BtnYearlyPurchases.TabIndex = 6;
-            this.BtnYearlyPurchases.Text = "Yearly Purchases";
-            this.BtnYearlyPurchases.UseVisualStyleBackColor = true;
-            this.BtnYearlyPurchases.Click += new System.EventHandler(this.BtnYearlyPurchases_Click);
-            // 
             // label25
             // 
             this.label25.AutoSize = true;
@@ -1707,6 +1673,16 @@
             this.BtnLogout.UseVisualStyleBackColor = true;
             this.BtnLogout.Visible = false;
             this.BtnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
+            // 
+            // BtnYearlyPurchases
+            // 
+            this.BtnYearlyPurchases.Location = new System.Drawing.Point(31, 229);
+            this.BtnYearlyPurchases.Name = "BtnYearlyPurchases";
+            this.BtnYearlyPurchases.Size = new System.Drawing.Size(174, 39);
+            this.BtnYearlyPurchases.TabIndex = 6;
+            this.BtnYearlyPurchases.Text = "Yearly Purchases";
+            this.BtnYearlyPurchases.UseVisualStyleBackColor = true;
+            this.BtnYearlyPurchases.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -1907,8 +1883,6 @@
         private System.Windows.Forms.Button BtnConvertQuote;
         private System.Windows.Forms.Button BtnEmailQuote;
         private System.Windows.Forms.Button BtnYearlyPurchases;
-        private System.Windows.Forms.Button BtnPrintInvoice;
-        private System.Windows.Forms.Button BtnPrintQuote;
     }
 }
 

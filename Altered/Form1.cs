@@ -783,63 +783,6 @@ namespace Altered
             ReportsDGV.Visible = true;
         }
 
-        private void BtnYearlyPurchases_Click(object sender, EventArgs e)
-        {
-            string query = "SELECT year(invoice_date) Year, FORMAT(SUM(price * quantity), 'C', 'en-za') Purchases FROM tblOrders t1 JOIN tblOrder_Items t2 ON t1.order_number = t2.order_number " +
-                "WHERE invoice_date IS NOT NULL GROUP BY year(invoice_date) ORDER BY year(invoice_date)";
-
-            ReportsChart.Series["Series1"].Points.Clear();
-
-            using (SqlConnection con = new SqlConnection(Connection.ConnectionString()))
-            {
-                con.Open();
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    cmd.CommandType = CommandType.Text;
-
-                    try
-                    {
-                        using (SqlDataReader sdr = cmd.ExecuteReader())
-                        {
-                            while (sdr.Read())
-                            {
-                                ReportsChart.Series["Series1"].Points.AddXY(sdr["Year"].ToString(), double.Parse(sdr["Purchases"].ToString().Substring(1)));
-                                ReportsChart.Series["Series1"].LegendText = "Yearly Purchases";
-                            }
-                        }
-                    }
-                    catch (SqlException ex)
-                    {
-                        _ = MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-
-                using (DataSet ds = new DataSet())
-                {
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        try
-                        {
-                            using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                            {
-                                adapter.Fill(ds);
-                                ReportsDGV.DataSource = ds.Tables[0];
-                            }
-                        }
-                        catch (SqlException ex)
-                        {
-                            _ = MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                        }
-                    }
-                }
-                con.Close();
-            }
-            ReportsChart.Visible = true;
-            ReportsDGV.Visible = true;
-        }
-
         private void BtnMonthlyExpenses_Click(object sender, EventArgs e)
         {
             ReportsChart.Series["Series1"].Points.Clear();
@@ -1007,27 +950,17 @@ namespace Altered
 
         private void BtnConvertInvoice_Click(object sender, EventArgs e)
         {
-            InvoiceEmailPrint("Convert");
+            InvoiceEmailPrint("Print");
         }
 
-        private void BtnPrintInvoice_Click(object sender, EventArgs e)
+        private void BtnConvertQuote_Click(object sender, EventArgs e)
         {
-            InvoiceEmailPrint("Print");
+            QuoteEmailPrint("Print");
         }
 
         private void BtnEmailInvoice_Click(object sender, EventArgs e)
         {
             InvoiceEmailPrint("Email");
-        }
-
-        private void BtnConvertQuote_Click(object sender, EventArgs e)
-        {
-            QuoteEmailPrint("Convert");
-        }
-
-        private void BtnPrintQuote_Click(object sender, EventArgs e)
-        {
-            QuoteEmailPrint("Print");
         }
 
         private void BtnEmailQuote_Click(object sender, EventArgs e)
@@ -1046,7 +979,7 @@ namespace Altered
             queryItems += " FROM tblInvoice_Items t1 JOIN tblProducts t2 ON t2.productID = t1.productID WHERE invoice_number = '" + invoice_number + "'";
 
             _ = new ConvertDocument(invoice_number, customerID, invoice_date, query, queryItems, emailPrint);
-        }        
+        }
 
         private void QuoteEmailPrint(string emailPrint)
         {
@@ -1404,6 +1337,9 @@ namespace Altered
             FillOrdersGrid(); 
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

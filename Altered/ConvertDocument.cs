@@ -41,6 +41,7 @@ namespace Altered
 
         private void CreateInvoice()
         {
+            //string path = "C:\\Users\\Admin\\source\\repos\\Altered\\Altered\\InvoiceTemplate1.xlsx";
             string path = "C:\\Program Files (x86)\\TMTech Solutions\\Altered EMS\\InvoiceTemplate1.xlsx";
             excelApplication = new Microsoft.Office.Interop.Excel.Application
             {
@@ -177,13 +178,9 @@ namespace Altered
                 File.Delete(excelFile);
             }
             
-            excelWorkbook.ExportAsFixedFormat(XlFixedFormatType.xlTypePDF, pdfFile);
+            excelWorkbook.ExportAsFixedFormat(XlFixedFormatType.xlTypePDF, pdfFile);            
 
-            if (SendorPrint == "Convert")
-            {
-                System.Diagnostics.Process.Start(pdfFile);
-            }
-            else if(SendorPrint == "Print")
+            if(SendorPrint == "Print")
             {
                 excelWorksheet.PrintOutEx(Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 System.Diagnostics.Process.Start(pdfFile);
