@@ -163,6 +163,7 @@
             this.ReportsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ReportsDGV = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnYearlyPurchases = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.TxtReportYear = new System.Windows.Forms.TextBox();
             this.BtnClearReports = new System.Windows.Forms.Button();
@@ -174,7 +175,6 @@
             this.BtnRestore = new System.Windows.Forms.Button();
             this.BtnBackup = new System.Windows.Forms.Button();
             this.BtnLogout = new System.Windows.Forms.Button();
-            this.BtnYearlyPurchases = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.home.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CRTYearlySales)).BeginInit();
@@ -1565,6 +1565,16 @@
             this.panel1.Size = new System.Drawing.Size(236, 680);
             this.panel1.TabIndex = 0;
             // 
+            // BtnYearlyPurchases
+            // 
+            this.BtnYearlyPurchases.Location = new System.Drawing.Point(31, 229);
+            this.BtnYearlyPurchases.Name = "BtnYearlyPurchases";
+            this.BtnYearlyPurchases.Size = new System.Drawing.Size(174, 39);
+            this.BtnYearlyPurchases.TabIndex = 6;
+            this.BtnYearlyPurchases.Text = "Yearly Purchases";
+            this.BtnYearlyPurchases.UseVisualStyleBackColor = true;
+            this.BtnYearlyPurchases.Click += new System.EventHandler(this.BtnYearlyPurchases_Click);
+            // 
             // label25
             // 
             this.label25.AutoSize = true;
@@ -1673,16 +1683,6 @@
             this.BtnLogout.UseVisualStyleBackColor = true;
             this.BtnLogout.Visible = false;
             this.BtnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
-            // 
-            // BtnYearlyPurchases
-            // 
-            this.BtnYearlyPurchases.Location = new System.Drawing.Point(31, 229);
-            this.BtnYearlyPurchases.Name = "BtnYearlyPurchases";
-            this.BtnYearlyPurchases.Size = new System.Drawing.Size(174, 39);
-            this.BtnYearlyPurchases.TabIndex = 6;
-            this.BtnYearlyPurchases.Text = "Yearly Purchases";
-            this.BtnYearlyPurchases.UseVisualStyleBackColor = true;
-            this.BtnYearlyPurchases.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
