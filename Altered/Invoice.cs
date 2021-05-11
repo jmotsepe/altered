@@ -150,7 +150,7 @@ namespace Altered
                 }
             }
 
-            if(amount_due == 0)
+            if(amount_due <= 0)
             {
                 UpdateInvoice();
             }
