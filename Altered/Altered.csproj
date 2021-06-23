@@ -130,6 +130,12 @@
     <Compile Include="Quotation.cs" />
     <Compile Include="RegexUtilities.cs" />
     <Compile Include="SendEmail.cs" />
+    <Compile Include="SpinnerCircles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpinnerCircles.Designer.cs">
+      <DependentUpon>SpinnerCircles.cs</DependentUpon>
+    </Compile>
     <Compile Include="SPLASH.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SpinnerCircles.resx">
+      <DependentUpon>SpinnerCircles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SPLASH.resx">
       <DependentUpon>SPLASH.cs</DependentUpon>
     </EmbeddedResource>

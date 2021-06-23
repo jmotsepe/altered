@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Altered
@@ -239,7 +240,7 @@ namespace Altered
             InvoiceDGV.Rows[1].Selected = true;
         }
 
-        private void FillCharts()                                                                                                                                                         
+        private void FillCharts()
         {
             string year = DateTime.Today.ToString("yyyy");
             string query = "SELECT DATENAME(month, DATEADD(MONTH, MONTH(invoice_paid_date), -1)) Month, SUM(price * quantity) Sales FROM tblInvoices t1 JOIN " +
@@ -948,24 +949,59 @@ namespace Altered
 
         }
 
-        private void BtnConvertInvoice_Click(object sender, EventArgs e)
-        {
+        private void BtnConvertInvoice_Click(object sender, EventArgs e)        {
+
+            //Create and start a new thread
+            Thread thread = new Thread(RunSpinner);
+            thread.Start();
+
+            
             InvoiceEmailPrint("Print");
+
+            //Kill the thread
+            thread.Abort();
+        }
+
+        private void RunSpinner()
+        {
+            SpinnerCircles spinnerCircles = new SpinnerCircles();
+            spinnerCircles.ShowDialog();
         }
 
         private void BtnConvertQuote_Click(object sender, EventArgs e)
         {
+            //Create and start a new thread
+            Thread thread = new Thread(RunSpinner);
+            thread.Start();
+
             QuoteEmailPrint("Print");
+
+            //Kill the thread
+            thread.Abort();
         }
 
         private void BtnEmailInvoice_Click(object sender, EventArgs e)
         {
+            //Create and start a new thread
+            Thread thread = new Thread(RunSpinner);
+            thread.Start();
+
             InvoiceEmailPrint("Email");
+
+            //Kill the thread
+            thread.Abort();
         }
 
         private void BtnEmailQuote_Click(object sender, EventArgs e)
         {
+            //Create and start a new thread
+            Thread thread = new Thread(RunSpinner);
+            thread.Start();
+
             QuoteEmailPrint("Email");
+
+            //Kill the thread
+            thread.Abort();
         }
 
         private void InvoiceEmailPrint(string emailPrint)
@@ -1392,6 +1428,12 @@ namespace Altered
             }
             ReportsChart.Visible = true;
             ReportsDGV.Visible = true;
+        }
+
+        private void testing_Click(object sender, EventArgs e)
+        {
+            SpinnerCircles spinnerCircles = new SpinnerCircles();
+            spinnerCircles.ShowDialog();
         }
     }
 }

@@ -186,7 +186,7 @@ namespace Altered
 
             if (SendorPrint == "Print")
             {
-                excelWorksheet.PrintOutEx(Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                //excelWorksheet.PrintOutEx(Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 System.Diagnostics.Process.Start(pdfFile);
             }
             else if (SendorPrint == "Email")
