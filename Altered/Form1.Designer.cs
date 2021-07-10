@@ -151,7 +151,7 @@
             this.TxtProductDesc = new System.Windows.Forms.TextBox();
             this.TxtProductPrice = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.TxtPictureLocation = new System.Windows.Forms.TextBox();
+            this.TxtSellingPrice = new System.Windows.Forms.TextBox();
             this.BtnCancelProduct = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.BtnAddProduct = new System.Windows.Forms.Button();
@@ -175,6 +175,11 @@
             this.BtnRestore = new System.Windows.Forms.Button();
             this.BtnBackup = new System.Windows.Forms.Button();
             this.BtnLogout = new System.Windows.Forms.Button();
+            this.TxtPictureLocation = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.RadProduct = new System.Windows.Forms.RadioButton();
+            this.RadService = new System.Windows.Forms.RadioButton();
+            this.label34 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.home.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CRTYearlySales)).BeginInit();
@@ -1367,19 +1372,24 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.RadProduct);
+            this.groupBox3.Controls.Add(this.RadService);
+            this.groupBox3.Controls.Add(this.label34);
+            this.groupBox3.Controls.Add(this.TxtPictureLocation);
+            this.groupBox3.Controls.Add(this.label31);
             this.groupBox3.Controls.Add(this.TxtProductID);
             this.groupBox3.Controls.Add(this.label19);
             this.groupBox3.Controls.Add(this.TxtProductDesc);
             this.groupBox3.Controls.Add(this.TxtProductPrice);
             this.groupBox3.Controls.Add(this.pictureBox1);
-            this.groupBox3.Controls.Add(this.TxtPictureLocation);
+            this.groupBox3.Controls.Add(this.TxtSellingPrice);
             this.groupBox3.Controls.Add(this.BtnCancelProduct);
             this.groupBox3.Controls.Add(this.label20);
             this.groupBox3.Controls.Add(this.BtnAddProduct);
             this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Location = new System.Drawing.Point(808, 30);
+            this.groupBox3.Location = new System.Drawing.Point(1034, 30);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(584, 583);
+            this.groupBox3.Size = new System.Drawing.Size(520, 660);
             this.groupBox3.TabIndex = 21;
             this.groupBox3.TabStop = false;
             // 
@@ -1394,7 +1404,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(21, 51);
+            this.label19.Location = new System.Drawing.Point(18, 51);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(83, 17);
             this.label19.TabIndex = 13;
@@ -1409,30 +1419,32 @@
             // 
             // TxtProductPrice
             // 
-            this.TxtProductPrice.Location = new System.Drawing.Point(176, 91);
+            this.TxtProductPrice.Location = new System.Drawing.Point(176, 129);
             this.TxtProductPrice.Name = "TxtProductPrice";
             this.TxtProductPrice.Size = new System.Drawing.Size(312, 23);
             this.TxtProductPrice.TabIndex = 11;
+            this.TxtProductPrice.TextChanged += new System.EventHandler(this.TxtProductPrice_TextChanged);
             // 
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(176, 179);
+            this.pictureBox1.Location = new System.Drawing.Point(176, 259);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(312, 312);
+            this.pictureBox1.Size = new System.Drawing.Size(312, 263);
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
             // 
-            // TxtPictureLocation
+            // TxtSellingPrice
             // 
-            this.TxtPictureLocation.Location = new System.Drawing.Point(176, 137);
-            this.TxtPictureLocation.Name = "TxtPictureLocation";
-            this.TxtPictureLocation.Size = new System.Drawing.Size(312, 23);
-            this.TxtPictureLocation.TabIndex = 12;
+            this.TxtSellingPrice.Location = new System.Drawing.Point(176, 169);
+            this.TxtSellingPrice.Name = "TxtSellingPrice";
+            this.TxtSellingPrice.ReadOnly = true;
+            this.TxtSellingPrice.Size = new System.Drawing.Size(312, 23);
+            this.TxtSellingPrice.TabIndex = 12;
             // 
             // BtnCancelProduct
             // 
-            this.BtnCancelProduct.Location = new System.Drawing.Point(356, 527);
+            this.BtnCancelProduct.Location = new System.Drawing.Point(275, 604);
             this.BtnCancelProduct.Name = "BtnCancelProduct";
             this.BtnCancelProduct.Size = new System.Drawing.Size(75, 27);
             this.BtnCancelProduct.TabIndex = 17;
@@ -1443,15 +1455,15 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(21, 97);
+            this.label20.Location = new System.Drawing.Point(18, 135);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(44, 17);
+            this.label20.Size = new System.Drawing.Size(76, 17);
             this.label20.TabIndex = 14;
-            this.label20.Text = "Price:";
+            this.label20.Text = "Cost Price:";
             // 
             // BtnAddProduct
             // 
-            this.BtnAddProduct.Location = new System.Drawing.Point(275, 527);
+            this.BtnAddProduct.Location = new System.Drawing.Point(162, 604);
             this.BtnAddProduct.Name = "BtnAddProduct";
             this.BtnAddProduct.Size = new System.Drawing.Size(75, 27);
             this.BtnAddProduct.TabIndex = 16;
@@ -1462,15 +1474,15 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(21, 143);
+            this.label21.Location = new System.Drawing.Point(18, 175);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(114, 17);
+            this.label21.Size = new System.Drawing.Size(90, 17);
             this.label21.TabIndex = 15;
-            this.label21.Text = "Picture Location:";
+            this.label21.Text = "Selling Price:";
             // 
             // BtnDeleteProduct
             // 
-            this.BtnDeleteProduct.Location = new System.Drawing.Point(400, 723);
+            this.BtnDeleteProduct.Location = new System.Drawing.Point(535, 722);
             this.BtnDeleteProduct.Name = "BtnDeleteProduct";
             this.BtnDeleteProduct.Size = new System.Drawing.Size(75, 27);
             this.BtnDeleteProduct.TabIndex = 20;
@@ -1479,7 +1491,7 @@
             // 
             // BtnEditProduct
             // 
-            this.BtnEditProduct.Location = new System.Drawing.Point(303, 723);
+            this.BtnEditProduct.Location = new System.Drawing.Point(427, 722);
             this.BtnEditProduct.Name = "BtnEditProduct";
             this.BtnEditProduct.Size = new System.Drawing.Size(75, 27);
             this.BtnEditProduct.TabIndex = 19;
@@ -1500,7 +1512,7 @@
             this.ProductDGV.ReadOnly = true;
             this.ProductDGV.RowHeadersVisible = false;
             this.ProductDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ProductDGV.Size = new System.Drawing.Size(706, 673);
+            this.ProductDGV.Size = new System.Drawing.Size(962, 673);
             this.ProductDGV.TabIndex = 9;
             // 
             // reports
@@ -1684,6 +1696,55 @@
             this.BtnLogout.Visible = false;
             this.BtnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
             // 
+            // TxtPictureLocation
+            // 
+            this.TxtPictureLocation.Location = new System.Drawing.Point(176, 209);
+            this.TxtPictureLocation.Name = "TxtPictureLocation";
+            this.TxtPictureLocation.Size = new System.Drawing.Size(312, 23);
+            this.TxtPictureLocation.TabIndex = 20;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(18, 215);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(114, 17);
+            this.label31.TabIndex = 21;
+            this.label31.Text = "Picture Location:";
+            // 
+            // RadProduct
+            // 
+            this.RadProduct.AutoSize = true;
+            this.RadProduct.Location = new System.Drawing.Point(275, 90);
+            this.RadProduct.Name = "RadProduct";
+            this.RadProduct.Size = new System.Drawing.Size(75, 21);
+            this.RadProduct.TabIndex = 27;
+            this.RadProduct.Text = "Product";
+            this.RadProduct.UseVisualStyleBackColor = true;
+            this.RadProduct.CheckedChanged += new System.EventHandler(this.RadProduct_CheckedChanged);
+            // 
+            // RadService
+            // 
+            this.RadService.AutoSize = true;
+            this.RadService.Checked = true;
+            this.RadService.Location = new System.Drawing.Point(176, 90);
+            this.RadService.Name = "RadService";
+            this.RadService.Size = new System.Drawing.Size(73, 21);
+            this.RadService.TabIndex = 26;
+            this.RadService.TabStop = true;
+            this.RadService.Text = "Service";
+            this.RadService.UseVisualStyleBackColor = true;
+            this.RadService.CheckedChanged += new System.EventHandler(this.RadService_CheckedChanged);
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(18, 90);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(114, 17);
+            this.label34.TabIndex = 25;
+            this.label34.Text = "Picture Location:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1816,7 +1877,7 @@
         private System.Windows.Forms.TextBox TxtProductDesc;
         private System.Windows.Forms.TextBox TxtProductPrice;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox TxtPictureLocation;
+        private System.Windows.Forms.TextBox TxtSellingPrice;
         private System.Windows.Forms.Button BtnCancelProduct;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button BtnAddProduct;
@@ -1883,6 +1944,11 @@
         private System.Windows.Forms.Button BtnConvertQuote;
         private System.Windows.Forms.Button BtnEmailQuote;
         private System.Windows.Forms.Button BtnYearlyPurchases;
+        private System.Windows.Forms.TextBox TxtPictureLocation;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.RadioButton RadProduct;
+        private System.Windows.Forms.RadioButton RadService;
+        private System.Windows.Forms.Label label34;
     }
 }
 

@@ -93,7 +93,7 @@ namespace Altered
 
         public void FillProductGrid()
         {
-            string query = "SELECT productID \"ID\", description Description, code Code, FORMAT(price, 'C', 'en-za') Price, imgLocation Image FROM tblProducts";
+            string query = "SELECT productID \"ID\", description Description, code Code, FORMAT(cost_price, 'C', 'en-za') \"Cost Price\", FORMAT(selling_price, 'C', 'en-za') \"Selling Price\", imgLocation Image FROM tblProducts";
             using (SqlConnection con = new SqlConnection(Connection.ConnectionString()))
             {
                 using (DataSet ds = new DataSet())
@@ -615,7 +615,7 @@ namespace Altered
 
         private void BtnAddProduct_Click(object sender, EventArgs e)
         {
-            if (TxtProductDesc.Text == "" || TxtProductPrice.Text == "" || TxtPictureLocation.Text == "")
+            if (TxtProductDesc.Text == "" || TxtProductPrice.Text == "" || TxtSellingPrice.Text == "" || TxtPictureLocation.Text == "")
             {
                 _ = MessageBox.Show("Product data missing", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -628,11 +628,11 @@ namespace Altered
             {
                 if (TxtProductID.Text == "")
                 {
-                    _ = new Product(TxtProductDesc.Text, double.Parse(TxtProductPrice.Text), TxtPictureLocation.Text, false);
+                    _ = new Product(TxtProductDesc.Text, double.Parse(TxtProductPrice.Text), double.Parse(TxtSellingPrice.Text), TxtPictureLocation.Text, false);
                 }
                 else
                 {
-                    _ = new Product(int.Parse(TxtProductID.Text), TxtProductDesc.Text, double.Parse(TxtProductPrice.Text), TxtPictureLocation.Text, true);
+                    _ = new Product(int.Parse(TxtProductID.Text), TxtProductDesc.Text, double.Parse(TxtProductPrice.Text), double.Parse(TxtSellingPrice.Text), TxtPictureLocation.Text, true);
                 }
             }
 
@@ -643,9 +643,39 @@ namespace Altered
             }
             TxtProductDesc.Text = "";
             TxtProductPrice.Text = "";
+            TxtSellingPrice.Text = "";
             TxtPictureLocation.Text = "";
             TxtProductID.Text = "";
+            RadService.Checked = true;
             BtnAddProduct.Text = "Add";
+        }
+
+        private void TxtProductPrice_TextChanged(object sender, EventArgs e)
+        {
+            if ((RadProduct.Checked == true) && (TxtProductPrice.Text != ""))
+            {
+
+                double sellingPrice = double.Parse(TxtProductPrice.Text) * 1.14814;
+                sellingPrice = Math.Ceiling(sellingPrice);
+                TxtSellingPrice.Text = sellingPrice.ToString("0.00");
+                //TxtSellingPrice.Text = Math.Ceiling(double.Parse(TxtProductPrice.Text) * 1.14814).ToString();
+            }
+            else if (RadService.Checked == true)
+            {
+                TxtSellingPrice.Text = TxtProductPrice.Text;
+            }
+        }
+
+        private void RadService_CheckedChanged(object sender, EventArgs e)
+        {
+            TxtSellingPrice.Text = TxtProductPrice.Text;
+        }
+
+        private void RadProduct_CheckedChanged(object sender, EventArgs e)
+        {
+            if (TxtProductPrice.Text != "") {
+                TxtSellingPrice.Text = Math.Ceiling(double.Parse(TxtProductPrice.Text) * 1.14814).ToString("0.00");
+            }
         }
 
         private void BtnEditProduct_Click(object sender, EventArgs e)
@@ -653,7 +683,11 @@ namespace Altered
             TxtProductID.Text = ProductDGV.CurrentRow.Cells[0].Value.ToString();
             TxtProductDesc.Text = ProductDGV.CurrentRow.Cells[1].Value.ToString();
             TxtProductPrice.Text = ProductDGV.CurrentRow.Cells[3].Value.ToString().Substring(1);
-            TxtPictureLocation.Text = ProductDGV.CurrentRow.Cells[4].Value.ToString();
+            if (ProductDGV.CurrentRow.Cells[4].Value.ToString() != "")
+            {
+                TxtSellingPrice.Text = ProductDGV.CurrentRow.Cells[4].Value.ToString().Substring(1);
+            }
+            TxtPictureLocation.Text = ProductDGV.CurrentRow.Cells[5].Value.ToString();
             BtnAddProduct.Text = "Update";
             BtnAddProduct.Enabled = true;
         }
@@ -662,6 +696,7 @@ namespace Altered
         {
             TxtProductDesc.Text = "";
             TxtProductPrice.Text = "";
+            TxtSellingPrice.Text = "";
             TxtPictureLocation.Text = "";
             BtnAddProduct.Text = "Add";
         }
@@ -1430,10 +1465,6 @@ namespace Altered
             ReportsDGV.Visible = true;
         }
 
-        private void testing_Click(object sender, EventArgs e)
-        {
-            SpinnerCircles spinnerCircles = new SpinnerCircles();
-            spinnerCircles.ShowDialog();
-        }
+
     }
 }

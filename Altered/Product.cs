@@ -9,16 +9,18 @@ namespace Altered
     internal class Product
     {
         private string Description { get; set; }
-        private double Price { get; set; }
+        private double CostPrice { get; set; }
+        private double SellingPrice { get; set; }
         private string Location { get; set; }
         private bool Edit { get; set; }
         private int ProductID { get; set; }
         private string Code { get; set; }
 
-        public Product(string description, double price, string location, bool edit)
+        public Product(string description, double costPrice, double sellingPrice, string location, bool edit)
         {
             Description = description;
-            Price = price;
+            CostPrice = costPrice;
+            SellingPrice = sellingPrice;
             Location = location;
             Edit = edit;
             Code = GenerateCode();
@@ -26,11 +28,12 @@ namespace Altered
             AddProduct();
         }
 
-        public Product(int productID, string description, double price, string location, bool edit)
+        public Product(int productID, string description, double costPrice, double sellingPrice, string location, bool edit)
         {
             ProductID = productID;
             Description = description;
-            Price = price;
+            CostPrice = costPrice;
+            SellingPrice = sellingPrice;
             Location = location;
             Edit = edit;
 
@@ -48,7 +51,8 @@ namespace Altered
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@description", SqlDbType.VarChar).Value = Description;
                     cmd.Parameters.AddWithValue("@code", SqlDbType.VarChar).Value = Code;
-                    cmd.Parameters.AddWithValue("@price", SqlDbType.Float).Value = Price;
+                    cmd.Parameters.AddWithValue("@cost_price", SqlDbType.Float).Value = CostPrice;
+                    cmd.Parameters.AddWithValue("@selling_price", SqlDbType.Float).Value = SellingPrice;
                     cmd.Parameters.AddWithValue("@imageLocation", SqlDbType.VarChar).Value = Location;
 
                     try
@@ -75,7 +79,8 @@ namespace Altered
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@productID", SqlDbType.Int).Value = ProductID;
                     cmd.Parameters.AddWithValue("@description", SqlDbType.VarChar).Value = Description;
-                    cmd.Parameters.AddWithValue("@price", SqlDbType.Float).Value = Price;
+                    cmd.Parameters.AddWithValue("@cost_price", SqlDbType.Float).Value = CostPrice;
+                    cmd.Parameters.AddWithValue("@selling_price", SqlDbType.Float).Value = SellingPrice;
                     cmd.Parameters.AddWithValue("@imageLocation", SqlDbType.VarChar).Value = Location;
 
                     try
